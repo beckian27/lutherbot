@@ -10,5 +10,10 @@ client = discord.Client(intents=discord.Intents.all())
 @client.event
 async def on_ready():
     print(f"{client.user} has connected to Discord!")
+    
+@client.event
+aysnc def on_message(msg):
+    if msg.content.startswith("!partytime"):
+        await msg.channel.send('where the bitches at')
 
 client.run(token)
