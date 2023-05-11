@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 token = os.getenv("token")
-client = discord.Client(discord.Intents.all())
+client = discord.Client(intents=discord.Intents.all())
 client.run(str(token))
     
 @client.event
