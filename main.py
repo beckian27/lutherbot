@@ -12,7 +12,7 @@ async def on_ready():
     print(f"{client.user} has connected to Discord!")
     
 @client.event
-aysnc def on_message(msg):
+async def on_message(msg):
     if msg.content.startswith("!partytime"):
         await msg.channel.send('where the bitches at')
 
