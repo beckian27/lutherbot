@@ -15,9 +15,16 @@ async def on_ready():
 async def on_message(msg):
     if msg.content.startswith("!partytime"):
         await msg.channel.send('where the bitches at')
-        
-    print(msg.channel.name)
+
     if msg.channel.name == 'bot-test':
-        print('hi')
+        if msg.content.startswith('!shoppinglist'):
+            requests = []
+            for request in msg.channel.history(limit = 2000, before = msg):
+                if request.content.startswith('!shoppinglist'):
+                    break
+                if request.content.startswith('!'):
+                    requests.append(request.content.strip('!'))
+            
+            print(requests)
 
 client.run(token)
