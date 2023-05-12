@@ -26,5 +26,10 @@ async def on_message(msg):
                     requests.append(request.content.strip('!'))
             
             print(requests)
+            
+    if msg.content == 'test':
+        mymsg = await msg.channel.send('reaction')
+        mymsg.react('😄')
+        
 
 client.run(token)
