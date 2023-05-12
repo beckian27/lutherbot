@@ -19,7 +19,7 @@ async def on_message(msg):
     if msg.channel.name == 'bot-test':
         if msg.content.startswith('!shoppinglist'):
             requests = []
-            for request in msg.channel.history(limit = 2000, before = msg):
+            async for request in msg.channel.history(limit = 2000, before = msg):
                 if request.content.startswith('!shoppinglist'):
                     break
                 if request.content.startswith('!'):
