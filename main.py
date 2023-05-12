@@ -29,7 +29,7 @@ async def on_message(msg):
             
     if msg.content == 'test':
         mymsg = await msg.channel.send('reaction')
-        await mymsg.add_reaction('😄')
+        await mymsg.add_reaction('\U00002705')
         
 
 client.run(token)
