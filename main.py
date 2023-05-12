@@ -16,5 +16,6 @@ async def on_message(msg):
     if msg.content.startswith("!partytime"):
         await msg.channel.send('where the bitches at')
         
-    print(msg.channel)
+    if msg.channel == 'bot-test':
+        print('hi')
 client.run(token)
