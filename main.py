@@ -17,7 +17,7 @@ async def on_message(msg):
         await msg.channel.send('where the bitches at')
         
     print(msg.channel)
-    if msg.channel == 'bot test':
+    if msg.channel.name == 'bot test':
         print('hi')
 
 client.run(token)
