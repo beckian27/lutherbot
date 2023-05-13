@@ -44,6 +44,7 @@ async def on_reaction_add(reaction, user):
     if reaction.message.channel.id == FS_DM_ID:
         if not user.bot:
             if reaction.message.author.bot:
-                await client.delete_message(reaction.message)
+                FS_DM = client.get_channel(FS_DM_ID)
+                await FS_DM.delete_messages(reaction.message)
 
 client.run(token)
