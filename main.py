@@ -25,7 +25,7 @@ async def on_message(msg):
                 if request.content.startswith('!'):
                     requests.append(request.content.strip('!'))
             
-            print(requests)
+            await msg.channel.send(sorted(requests))
             
     if msg.content == 'test':
         mymsg = await msg.channel.send('reaction')
