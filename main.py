@@ -32,12 +32,8 @@ async def on_message(msg):
             FS_DM = client.get_channel(FS_DM_ID)
 
             for request in sorted(requests):
-                await FS_DM.send(request)
-                
-            
-    if msg.content == 'test':
-        mymsg = await msg.channel.send('reaction')
-        await mymsg.add_reaction(CHECK_MARK_CODE)
+                mymsg = await FS_DM.send(request)
+                await mymsg.add_reaction(CHECK_MARK_CODE)
     
     if 'emo' in msg.content.lower():
         if not msg.author.bot:
