@@ -9,7 +9,6 @@ load_dotenv()
 token = os.getenv("token")
 client = discord.Client(intents=discord.Intents.all())
 
-FS_DM = client.get_channel(FS_DM_ID)
     
 @client.event
 async def on_ready():
@@ -29,7 +28,8 @@ async def on_message(msg):
                     break
                 if request.content.startswith('!'):
                     requests.append(request.content.strip('!'))
-                    
+            
+            FS_DM = client.get_channel(FS_DM_ID)    
 
             for request in sorted(requests):
                 mymsg = await FS_DM.send(request)
@@ -42,8 +42,11 @@ async def on_message(msg):
 @client.event
 async def on_raw_reaction_add(payload):
     if payload.channel_id == FS_DM_ID:
+        
+        FS_DM = client.get_channel(FS_DM_ID)
         message = await FS_DM.fetch_message(payload.message_id)
         user = await client.fetch_user(payload.user_id)
+        
         if not user.bot:
             if message.author.bot:
                 FS_DM = client.get_channel(FS_DM_ID)
