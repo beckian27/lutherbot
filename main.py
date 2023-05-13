@@ -3,7 +3,8 @@ import discord
 from dotenv import load_dotenv
 
 CHECK_MARK_CODE = '\U00002705'
-FS_DM_ID = '1106246078472409201'
+FS_DM_ID = 1106246078472409201
+
 
 load_dotenv()
 token = os.getenv("token")
