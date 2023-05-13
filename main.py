@@ -29,10 +29,10 @@ async def on_message(msg):
                 if request.content.startswith('!'):
                     requests.append(request.content.strip('!'))
             
-            FS_DM = client.get_channel(FS_DM_ID)    
+            fs_dm = client.get_channel(FS_DM_ID)    
 
             for request in sorted(requests):
-                mymsg = await FS_DM.send(request)
+                mymsg = await fs_dm.send(request)
                 await mymsg.add_reaction(CHECK_MARK_CODE)
     
     if 'emo' in msg.content.lower():
@@ -42,14 +42,13 @@ async def on_message(msg):
 @client.event
 async def on_raw_reaction_add(payload):
     if payload.channel_id == FS_DM_ID:
-        
-        FS_DM = client.get_channel(FS_DM_ID)
-        message = await FS_DM.fetch_message(payload.message_id)
         user = await client.fetch_user(payload.user_id)
         
         if not user.bot:
+            fs_dm = client.get_channel(FS_DM_ID)
+            message = await fs_dm.fetch_message(payload.message_id)
+            
             if message.author.bot:
-                FS_DM = client.get_channel(FS_DM_ID)
-                await FS_DM.delete_messages([message])
+                await fs_dm.delete_messages([message])
 
 client.run(token)
