@@ -5,10 +5,11 @@ from dotenv import load_dotenv
 CHECK_MARK_CODE = '\U00002705'
 FS_DM_ID = 1106246078472409201
 
-
 load_dotenv()
 token = os.getenv("token")
 client = discord.Client(intents=discord.Intents.all())
+
+FS_DM = client.get_channel(FS_DM_ID)
     
 @client.event
 async def on_ready():
@@ -29,7 +30,6 @@ async def on_message(msg):
                 if request.content.startswith('!'):
                     requests.append(request.content.strip('!'))
                     
-            FS_DM = client.get_channel(FS_DM_ID)
 
             for request in sorted(requests):
                 mymsg = await FS_DM.send(request)
@@ -40,11 +40,13 @@ async def on_message(msg):
             await msg.channel.send('"Real Emo" only consists of the dc Emotional Hardcore scene and the late 90\'s Screamo scene. What is known by "Midwest Emo" is nothing but Alternative Rock with questionable real emo influence. When people try to argue that bands like My Chemical Romance are not real emo, while saying that Sunny Day Real Estate is, I can\'t help not to cringe because they are just as fake emo as My Chemical Romance (plus the pretentiousness). Real emo sounds ENERGETIC, POWERFUL and somewhat HATEFUL. Fake emo is weak, self pity and a failed attempt to direct energy and emotion into music. Some examples of REAL EMO are Pg 99, Rites of Spring, Cap n Jazz (the only real emo band from the midwest scene) and Loma Prieta. Some examples of FAKE EMO are American Football, My Chemical Romance and Mineral EMO BELONGS TO HARDCORE NOT TO INDIE, POP PUNK, ALT ROCK OR ANY OTHER MAINSTREAM GENRE')
 
 @client.event
-async def on_raw_reaction_add(reaction, user):
-    if reaction.message.channel.id == FS_DM_ID:
+async def on_raw_reaction_add(payload):
+    if payload.channel_id == FS_DM_ID:
+        message = await FS_DM.fetch_message(payload.message_id)
+        user = await client.fetch_user(payload.user_id)
         if not user.bot:
-            if reaction.message.author.bot:
+            if message.author.bot:
                 FS_DM = client.get_channel(FS_DM_ID)
-                await FS_DM.delete_messages([reaction.message])
+                await FS_DM.delete_messages([message])
 
 client.run(token)
