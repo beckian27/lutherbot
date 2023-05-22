@@ -3,7 +3,7 @@ import discord
 from dotenv import load_dotenv
 
 CHECK_MARK_CODE = '\U00002705'
-FS_DM_ID = 1106246078472409201 #hardcode the DM where the shopping list is generated
+FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
 
 load_dotenv()
 token = os.getenv('token')
@@ -19,7 +19,7 @@ async def on_message(msg):
     if msg.content.startswith('!partytime'): # IMPORTANT DO NOT DELETE
         await msg.channel.send('where the bitches at')
 
-    if msg.channel.name == 'bot-test':
+    if msg.channel.name == 'food-requests':
         if msg.content.startswith('!shoppinglist'):
             requests = []
             async for request in msg.channel.history(limit = 2000, before = msg):
