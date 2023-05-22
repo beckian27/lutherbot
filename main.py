@@ -41,7 +41,7 @@ async def on_message(msg):
         if not msg.author.bot:
             taz = False
             for role in msg.author.roles:
-                if role.name == 'president':
+                if role.name == 'President':
                     taz = True
             print(msg.author.roles)
             if not taz:
