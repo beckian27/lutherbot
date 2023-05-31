@@ -52,6 +52,9 @@ async def on_message(msg):
         pic = random.choice(
             [
                 'https://www.peta.org/wp-content/uploads/2015/04/10903825_872344489483233_7702124773103899276_o-668x336.jpg?20190103121630',
+                'https://imgur.com/a/rSpS5G9',
+                'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphoto%2Fa-grey-pet-rat-sits-on-a-toy-motorcycle-gm1197373509-341840167&psig=AOvVaw0s0MAoI5xRk0H7uG2L3EYD&ust=1685651016813000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLCAscOxoP8CFQAAAAAdAAAAABAD',
+                'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FDick_Cheney&psig=AOvVaw2vkd8VHylVmDWx0Ppm5c_e&ust=1685651073239000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPj5g96xoP8CFQAAAAAdAAAAABAD'
             ]
             
         )
