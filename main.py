@@ -37,6 +37,12 @@ async def on_message(msg):
             for request in sorted(requests):
                 mymsg = await fs_dm.send(request)
                 await mymsg.add_reaction(CHECK_MARK_CODE)
+                
+            copypaste = ''
+            for request in sorted(requests):
+                copypaste = copypaste + request + '\n'
+            
+            await fs_dm.send(copypaste)
     
     if 'emo' in msg.content.lower():
         if not msg.author.bot:
@@ -62,6 +68,9 @@ async def on_message(msg):
         
     if msg.channel.name == 'chore-submissions' and not msg.author.bot:
         await msg.channel.send('slay')
+        
+    if msg.content == 'what':
+        await msg.channel.send('chicken butt')
         
 
 @client.event
