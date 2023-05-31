@@ -53,8 +53,8 @@ async def on_message(msg):
             [
                 'https://www.peta.org/wp-content/uploads/2015/04/10903825_872344489483233_7702124773103899276_o-668x336.jpg?20190103121630',
                 'https://imgur.com/r7WkJOX',
-                'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphoto%2Fa-grey-pet-rat-sits-on-a-toy-motorcycle-gm1197373509-341840167&psig=AOvVaw0s0MAoI5xRk0H7uG2L3EYD&ust=1685651016813000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLCAscOxoP8CFQAAAAAdAAAAABAD',
-                'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FDick_Cheney&psig=AOvVaw2vkd8VHylVmDWx0Ppm5c_e&ust=1685651073239000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPj5g96xoP8CFQAAAAAdAAAAABAD'
+                'https://media.istockphoto.com/id/1197373509/photo/a-grey-pet-rat-sits-on-a-toy-motorcycle.jpg?s=170667a&w=0&k=20&c=wHXqWJ5NB4TmNbzwYm9KclN8gcsSRIWBJlfwGk0jehY=',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/46_Dick_Cheney_3x4.jpg/640px-46_Dick_Cheney_3x4.jpg',
             ]
             
         )
