@@ -60,6 +60,9 @@ async def on_message(msg):
         )
         await msg.channel.send(pic)
         
+    if msg.channel.name == 'chore-submissions' and not msg.author.bot:
+        await msg.channel.send('slay')
+        
 
 @client.event
 async def on_raw_reaction_add(payload):
