@@ -50,7 +50,9 @@ async def on_message(msg):
 
     if 'rat' in msg.content.lower():
         pic = random.choice(
-            'https://www.peta.org/wp-content/uploads/2015/04/10903825_872344489483233_7702124773103899276_o-668x336.jpg?20190103121630',
+            [
+                'https://www.peta.org/wp-content/uploads/2015/04/10903825_872344489483233_7702124773103899276_o-668x336.jpg?20190103121630',
+            ]
             
         )
         await msg.channel.send(pic)
