@@ -125,6 +125,7 @@ async def on_raw_reaction_add(payload):
                 await channel.delete_messages([message])
                 
                 if not user.get_role(WORM):
+                    text = text.removesuffix('\nClick the check mark to claim this chore!')
                     text = f'{text}\n{user.display_name} claimed this chore!'
                     await channel.send(text)
 
