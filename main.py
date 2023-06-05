@@ -109,10 +109,12 @@ async def on_raw_reaction_add(payload):
     # allows claiming of makeup chore opportunities or deletion by worm
     if payload.channel_id == MAKEUP_ID:
         user = await client.fetch_user(payload.user_id)
+        print(user)
         
         if not user.bot and payload.emoji.id == CHECK_MARK_CODE:
             channel = client.get_channel(MAKEUP_ID)
             message = await channel.fetch_message(payload.message_id)
+            print(message)
             
             if message.author.bot:
                 text = message.content
