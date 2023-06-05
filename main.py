@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 CHECK_MARK_CODE = '\U00002705'
 FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
 MAKEUP_ID = 1115356156307718144
+SERVER_ID = 1100528927803461634
 WORM = 1103462042490384434
 PREZ = 1103461097803092079
 
@@ -108,7 +109,8 @@ async def on_raw_reaction_add(payload):
                 
     # allows claiming of makeup chore opportunities or deletion by worm
     if payload.channel_id == MAKEUP_ID:
-        user = await client.fetch_user(payload.user_id)
+        server = client.fetch_guild(SERVER_ID)
+        user = await server.fetch_member(payload.user_id)
         print(user)
         
         if not user.bot:
