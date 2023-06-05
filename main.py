@@ -114,11 +114,8 @@ async def on_raw_reaction_add(payload):
         print(user)
         
         if not user.bot:
-            print('hi')
             channel = client.get_channel(MAKEUP_ID)
-            print('channel')
             message = await channel.fetch_message(payload.message_id)
-            print(message)
             
             if message.author.bot:
                 text = message.content
