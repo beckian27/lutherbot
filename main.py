@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 CHECK_MARK_CODE = '\U00002705'
 FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
 WORM = 1103462042490384434
+PREZ = 1103461097803092079
 
 load_dotenv() # store the discord token in a text file called ".env"
 token = os.getenv('token') # im sure this is super secure but idrc
@@ -80,7 +81,7 @@ async def on_message(msg):
     if msg.content == 'what':
         await msg.channel.send('chicken butt')
         
-    if msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
+    if msg.channel.name == 'bot-test' and msg.author.get_role(PREZ):
         if msg.content.startswith('!makeup'):
             opportunity = msg.content.removeprefix('!makeup ')
             opportunity = opportunity + '\n Click the check mark to claim this chore!'
