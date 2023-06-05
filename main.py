@@ -110,7 +110,7 @@ async def on_raw_reaction_add(payload):
     if payload.channel_id == MAKEUP_ID:
         user = await client.fetch_user(payload.user_id)
         print(user)
-        print(payload.emoji.id)
+        print(payload.emoji.name)
         
         if not user.bot and payload.emoji.id == CHECK_MARK_CODE:
             print('hi')
