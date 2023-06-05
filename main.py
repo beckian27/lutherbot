@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 CHECK_MARK_CODE = '\U00002705'
 FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
+MAKEUP_ID = 1115356156307718144
 WORM = 1103462042490384434
 PREZ = 1103461097803092079
 
@@ -84,7 +85,7 @@ async def on_message(msg):
     if msg.channel.name == 'bot-test' and msg.author.get_role(PREZ):
         if msg.content.startswith('!makeup'):
             opportunity = msg.content.removeprefix('!makeup ')
-            opportunity = opportunity + '\n Click the check mark to claim this chore!'
+            opportunity = opportunity + '\nClick the check mark to claim this chore!'
             await msg.channel.delete_messages([msg])
             msg = await msg.channel.send(opportunity)
             await msg.add_reaction(CHECK_MARK_CODE)
@@ -104,6 +105,22 @@ async def on_raw_reaction_add(payload):
             
             if message.author.bot:
                 await fs_dm.delete_messages([message])
+                
+    # allows claiming of makeup chore opportunities or deletion by worm
+    if payload.channel_id == MAKEUP_ID:
+        user = await client.fetch_user(payload.user_id)
+        
+        if not user.bot and payload.emoji.id == CHECK_MARK_CODE:
+            channel = client.get_channel(MAKEUP_ID)
+            message = await channel.fetch_message(payload.message_id)
+            
+            if message.author.bot:
+                text = message.content
+                await channel.delete_messages([message])
+                
+                if not user.get_role(WORM):
+                    text = f'{text}\n{user.display_name} claimed this chore!'
+                    await channel.send(text)
 
 client.run(token)
 
