@@ -109,7 +109,7 @@ async def on_raw_reaction_add(payload):
                 
     # allows claiming of makeup chore opportunities or deletion by worm
     if payload.channel_id == MAKEUP_ID:
-        server = client.fetch_guild(SERVER_ID)
+        server = await client.fetch_guild(SERVER_ID)
         user = await server.fetch_member(payload.user_id)
         print(user)
         
