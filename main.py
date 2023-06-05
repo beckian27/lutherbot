@@ -5,10 +5,11 @@ from dotenv import load_dotenv
 
 CHECK_MARK_CODE = '\U00002705'
 FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
+WORM = 1103462042490384434
 
-load_dotenv()
-token = os.getenv('token')
-client = discord.Client(intents=discord.Intents.all())
+load_dotenv() # store the discord token in a text file called ".env"
+token = os.getenv('token') # im sure this is super secure but idrc
+client = discord.Client(intents=discord.Intents.all()) # lets the bot do whatever it wants
 
     
 @client.event
@@ -17,9 +18,11 @@ async def on_ready():
     
 @client.event
 async def on_message(msg):
-    if msg.content.startswith('!partytime'): # IMPORTANT DO NOT DELETE
+    if msg.content.startswith('!partytime') or msg.content == 'party time': # IMPORTANT DO NOT DELETE
         await msg.channel.send('where the bitches at')
 
+    # food requests are made by prefacing the iterm with !
+    # the food steward can generate a shopping list by typing !shoppinglist
     if msg.channel.name == 'food-requests':
         if msg.content.startswith('!shoppinglist'):
             requests = []
@@ -32,21 +35,26 @@ async def on_message(msg):
             
             fs_dm = client.get_channel(FS_DM_ID)    
 
-            # generates alphabetized shopping list in DM channel
+            # generates alphabetized shopping list in private channel
             # adds a reaction to each item to act as a check off button
             for request in sorted(requests):
                 mymsg = await fs_dm.send(request)
                 await mymsg.add_reaction(CHECK_MARK_CODE)
                 
-            copypaste = ''
+            copypaste = '' # also sends a single copy-pasteable message for this who prefer not to use this
             for request in sorted(requests):
+                if len(copypaste) > 1950: # if message approches discord char limit
+                    await fs_dm.send(copypaste)
+                    copypaste = ''
+
                 copypaste = copypaste + request + '\n'
+                
             
             await fs_dm.send(copypaste)
     
-    if 'emo' in msg.content.lower():
+    if 'emo' in msg.content.lower(): 
         if not msg.author.bot:
-            taz = False
+            taz = False # taz is immune to the emo copypasta
             for role in msg.author.roles:
                 if role.name == 'gay boy':
                     taz = True
@@ -72,6 +80,16 @@ async def on_message(msg):
     if msg.content == 'what':
         await msg.channel.send('chicken butt')
         
+    if msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
+        if msg.content.startswith('!makeup'):
+            opportunity = msg.content.removeprefix('!makeup ')
+            opportunity = opportunity + '\n Click the check mark to claim this chore!'
+            await msg.channel.delete_messages([msg])
+            msg = await msg.channel.send(opportunity)
+            await msg.add_reaction(CHECK_MARK_CODE)
+            
+        
+        
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -87,3 +105,5 @@ async def on_raw_reaction_add(payload):
                 await fs_dm.delete_messages([message])
 
 client.run(token)
+
+
