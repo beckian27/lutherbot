@@ -56,7 +56,7 @@ async def on_message(msg):
             await fs_dm.send(copypaste)
     
     if 'emo' in msg.content.lower(): 
-        if not msg.author.bot:
+        if not msg.author.bot and msg.channel.name is not 'makeup-chores':
             taz = False # taz is immune to the emo copypasta
             for role in msg.author.roles:
                 if role.name == 'gay boy':
@@ -83,6 +83,7 @@ async def on_message(msg):
     if msg.content == 'what':
         await msg.channel.send('chicken butt')
         
+    # for the worm to create makeup chores
     if msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
         if msg.content.startswith('!makeup'):
             opportunity = msg.content.removeprefix('!makeup ')
