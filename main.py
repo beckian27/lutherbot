@@ -107,6 +107,7 @@ async def on_raw_reaction_add(payload):
     if payload.channel_id == MAKEUP_ID:
         server = await client.fetch_guild(SERVER_ID)
         user = await server.fetch_member(payload.user_id)
+        print(user.name)
         
         if not user.bot:
             channel = client.get_channel(MAKEUP_ID)
