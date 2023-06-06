@@ -83,7 +83,7 @@ async def on_message(msg):
     if msg.content == 'what':
         await msg.channel.send('chicken butt')
         
-    if msg.channel.name == 'makeup-chores' and msg.author.get_role(PREZ):
+    if msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
         if msg.content.startswith('!makeup'):
             opportunity = msg.content.removeprefix('!makeup ')
             opportunity = opportunity + '\nClick the check mark to claim this chore!'
