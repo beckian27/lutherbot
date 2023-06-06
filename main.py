@@ -57,7 +57,6 @@ async def on_message(msg):
     
     if 'emo' in msg.content.lower(): 
         if not msg.author.bot and msg.channel.name != 'makeup-chores':
-            
             taz = False # taz is immune to the emo copypasta
             for role in msg.author.roles:
                 if role.name == 'gay boy':
