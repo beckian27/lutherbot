@@ -61,7 +61,7 @@ async def on_raw_reaction_add(payload):
         await makeups.claim_makeup(payload, client, SERVER_ID, MAKEUP_ID, WORM)
 
     if payload.channel_id == 1106246078472409201:
-        print(payload.emoji.id, payload.emoji.name)
+        print(payload.emoji.str())
 
 client.run(token)
 
