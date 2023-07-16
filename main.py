@@ -14,6 +14,35 @@ load_dotenv() # store the discord token in a text file called ".env"
 token = os.getenv('token') # im sure this is super secure but idrc
 client = discord.Client(intents=discord.Intents.all()) # lets the bot do whatever it wants
 
+async def make_shopping_list(msg):
+    requests = []
+    async for request in msg.channel.history(limit = 2000, before = msg):
+        # scans messages until previous list request
+        if request.content.startswith('!shopping'):
+            break
+        if request.content.startswith('!'):
+            for line in request.content.splitlines():
+                requests.append(line.strip('! '))
+    
+    fs_dm = client.get_channel(FS_DM_ID)    
+
+    # generates alphabetized shopping list in private channel
+    # adds a reaction to each item to act as a check off button
+    for request in sorted(requests):
+        mymsg = await fs_dm.send(request)
+        await mymsg.add_reaction(CHECK_MARK_CODE)
+        
+    copypaste = '' # also sends a single copy-pasteable message for this who prefer not to use this
+    for request in sorted(requests):
+        if len(copypaste) > 1950: # if message approches discord char limit
+            await fs_dm.send(copypaste)
+            copypaste = ''
+
+        copypaste = copypaste + request + '\n'
+        
+    
+    await fs_dm.send(copypaste)
+
     
 @client.event
 async def on_ready():
@@ -98,34 +127,6 @@ async def on_raw_reaction_add(payload):
 
 client.run(token)
 
-async def make_shopping_list(msg):
-    requests = []
-    async for request in msg.channel.history(limit = 2000, before = msg):
-        # scans messages until previous list request
-        if request.content.startswith('!shopping'):
-            break
-        if request.content.startswith('!'):
-            for line in request.content.splitlines():
-                requests.append(line.strip('! '))
-    
-    fs_dm = client.get_channel(FS_DM_ID)    
-
-    # generates alphabetized shopping list in private channel
-    # adds a reaction to each item to act as a check off button
-    for request in sorted(requests):
-        mymsg = await fs_dm.send(request)
-        await mymsg.add_reaction(CHECK_MARK_CODE)
-        
-    copypaste = '' # also sends a single copy-pasteable message for this who prefer not to use this
-    for request in sorted(requests):
-        if len(copypaste) > 1950: # if message approches discord char limit
-            await fs_dm.send(copypaste)
-            copypaste = ''
-
-        copypaste = copypaste + request + '\n'
-        
-    
-    await fs_dm.send(copypaste)
 
 
 
