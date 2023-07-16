@@ -2,8 +2,8 @@ import os
 import discord
 from dotenv import load_dotenv
 import shopping
-from . import misc
-from . import makeups
+import misc
+import makeups
 
 CHECK_MARK_CODE = '\U00002705'
 FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
