@@ -45,9 +45,12 @@ async def on_message(msg):
     if msg.content == 'what':
         await msg.channel.send('chicken butt')
     
-
     if msg.content.startswith('!partytime') or msg.content == 'party time': # IMPORTANT DO NOT DELETE
         await msg.channel.send('where the bitches at')
+
+    if msg.channel.name == 'bot-test':
+        if msg.attachments:
+            print('hi')
 
             
 @client.event
