@@ -62,7 +62,7 @@ async def on_raw_reaction_add(payload):
 
     if payload.channel_id == 1106246078472409201:
         print(str(payload.emoji))
-        if payload.emoji == CHECK_MARK_CODE:
+        if payload.emoji == '✅':
             print('yay')
 
 client.run(token)
