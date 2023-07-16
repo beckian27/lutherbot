@@ -30,7 +30,7 @@ async def on_message(msg):
     # the food steward can generate a shopping list by typing !shoppinglist
     if msg.channel.name == 'food-requests':
         if msg.content.startswith('!shopping'):
-            await shopping.make_shopping_list(msg)
+            await shopping.make_shopping_list(msg, client, FS_DM_ID, CHECK_MARK_CODE)
     
     if 'emo' in msg.content.lower(): 
         await misc.emo(msg)
@@ -46,13 +46,13 @@ async def on_message(msg):
         
     # for the worm to create makeup chores
     if msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
-        await makeups.create_makeup(msg)
+        await makeups.create_makeup(msg, CHECK_MARK_CODE)
             
 @client.event
 async def on_raw_reaction_add(payload):
     # this will delete an item from the shopping list when reacted to
     if payload.channel_id == FS_DM_ID:
-        await shopping.delete_item(payload)
+        await shopping.delete_item(payload, client, FS_DM_ID)
                 
     # allows claiming of makeup chore opportunities or deletion by worm
     if payload.channel_id == MAKEUP_ID:
