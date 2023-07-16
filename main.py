@@ -61,7 +61,9 @@ async def on_raw_reaction_add(payload):
         await makeups.claim_makeup(payload, client, SERVER_ID, MAKEUP_ID, WORM)
 
     if payload.channel_id == 1106246078472409201:
-        print(payload.emoji.str())
+        print(str(payload.emoji))
+        if payload.emoji == CHECK_MARK_CODE:
+            print('yay')
 
 client.run(token)
 
