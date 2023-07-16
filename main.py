@@ -28,7 +28,7 @@ async def on_message(msg):
     # the food steward can generate a shopping list by typing !shoppinglist
     if msg.channel.name == 'food-requests':
         if msg.content.startswith('!shopping'):
-            make_shopping_list(msg)
+            await make_shopping_list(msg)
     
     if 'emo' in msg.content.lower(): 
         if not msg.author.bot and msg.channel.name != 'makeup-chores':
