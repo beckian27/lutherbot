@@ -1,7 +1,7 @@
 import os
 import discord
 from dotenv import load_dotenv
-from . import shopping
+import shopping
 from . import misc
 from . import makeups
 
