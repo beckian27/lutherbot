@@ -23,14 +23,15 @@ async def on_ready():
     
 @client.event
 async def on_message(msg):
-    if msg.content.startswith('!partytime') or msg.content == 'party time': # IMPORTANT DO NOT DELETE
-        await msg.channel.send('where the bitches at')
-
-    # food requests are made by prefacing the iterm with !
+    # food requests are made by prefacing the term with !
     # the food steward can generate a shopping list by typing !shoppinglist
     if msg.channel.name == 'food-requests':
         if msg.content.startswith('!shopping'):
             await shopping.make_shopping_list(msg, client, FS_DM_ID, CHECK_MARK_CODE)
+
+    # for the worm to create makeup chores
+    elif msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
+        await makeups.create_makeup(msg, CHECK_MARK_CODE)
     
     if 'emo' in msg.content.lower(): 
         await misc.emo(msg)
@@ -43,10 +44,11 @@ async def on_message(msg):
         
     if msg.content == 'what':
         await msg.channel.send('chicken butt')
-        
-    # for the worm to create makeup chores
-    if msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
-        await makeups.create_makeup(msg, CHECK_MARK_CODE)
+    
+
+    if msg.content.startswith('!partytime') or msg.content == 'party time': # IMPORTANT DO NOT DELETE
+        await msg.channel.send('where the bitches at')
+
             
 @client.event
 async def on_raw_reaction_add(payload):
@@ -55,8 +57,11 @@ async def on_raw_reaction_add(payload):
         await shopping.delete_item(payload, client, FS_DM_ID)
                 
     # allows claiming of makeup chore opportunities or deletion by worm
-    if payload.channel_id == MAKEUP_ID:
+    elif payload.channel_id == MAKEUP_ID:
         await makeups.claim_makeup(payload, client, SERVER_ID, MAKEUP_ID, WORM)
+
+    if payload.channel_id == 1106246078472409201:
+        print(payload.id, payload.name)
 
 client.run(token)
 
