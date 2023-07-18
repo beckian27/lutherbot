@@ -14,7 +14,7 @@ def get_schedule(sh):
         col = template.col_values(column)
         day, col = col[0], col[1::]
         for cell in col:
-            if cell[-1].isnumeric():
+            if cell and cell[-1].isnumeric():
                 print(cell)
 
 
