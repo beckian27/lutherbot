@@ -12,7 +12,8 @@ def get_schedule(sh):
     template = sh.worksheet('Template (Edit Here)')
     for column in range(1,7):
         col = template.col_values(column)
-        day, col = col[0], col[1,...]
+        day, col = col[0], col[1::]
+        print( day, col)
 
 
 
