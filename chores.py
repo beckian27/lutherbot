@@ -10,12 +10,19 @@ def sheets_init():
 
 def get_schedule(sh):
     template = sh.worksheet('Template (Edit Here)')
+    schedule = {}
     for column in range(1,7):
-        col = template.col_values(column)
+        col = template.col_values(column, includegriddata=True)
         day, col = col[0], col[1::]
+        currentchore = ''
+        hours = 0
         for cell in col:
             if cell and cell[-1].isnumeric():
+                currentchore, hours = cell.split(',')
+                hours.strip()
+                currentchore = f'{day} {currentchore}'
                 print(cell)
+
 
 
 
