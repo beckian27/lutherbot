@@ -12,7 +12,7 @@ def get_schedule(sh):
     template = sh.worksheet('Template (Edit Here)')
     for column in range(1,7):
         col = template.col_values(column)
-        print(col)
+        day, col = col[0], col[1,...]
 
 
 
