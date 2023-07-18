@@ -8,3 +8,4 @@ venv/
 venv3/
 .venv/
 .pytest_cache
+creds.json

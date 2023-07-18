@@ -15,7 +15,6 @@ PREZ = 1103461097803092079
 load_dotenv() # store the discord token in a text file called ".env"
 token = os.getenv('token') # im sure this is super secure but idrc
 client = discord.Client(intents=discord.Intents.all()) # lets the bot do whatever it wants
-
     
 @client.event
 async def on_ready():
@@ -48,10 +47,12 @@ async def on_message(msg):
     if msg.content.startswith('!partytime') or msg.content == 'party time': # IMPORTANT DO NOT DELETE
         await msg.channel.send('where the bitches at')
 
+    if 'penis' in msg.content.lower():
+        await misc.penis(client)
+
     if msg.channel.name == 'bot-test':
         if msg.attachments:
             print('hi')
-
             
 @client.event
 async def on_raw_reaction_add(payload):
@@ -70,6 +71,4 @@ async def on_raw_reaction_add(payload):
 
 client.run(token)
 
-
-
-
+# lutherbot@lutherbot.iam.gserviceaccount.com
