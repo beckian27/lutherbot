@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import shopping
 import misc
 import makeups
+import chores
 
 CHECK_MARK_CODE = '\U00002705'
 FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
@@ -19,6 +20,8 @@ client = discord.Client(intents=discord.Intents.all()) # lets the bot do whateve
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
+    chores.sheets_init()
+
     
 @client.event
 async def on_message(msg):
