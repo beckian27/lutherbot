@@ -23,5 +23,5 @@ async def penis(client):
             'https://www.imaios.com/i/s/imaios-images/web/images/eanatomy/modules/pelvis-male-illustrations/images/v2/53ae47455c282f6c5510028a36948d9f3814059faa99e03837b14cf84e3d4a21?w=200&mark-x=0&mark-y=0&mark=https%3A%2F%2Fwww.imaios.com%2Fi%2Fs%2Fimaios-images%2Ftra.png%3Fw%3D200%26h%3D209%26fit%3Dscale%26mark-x%3D35.92%26mark-y%3D20.67%26mark%3Dhttps%253A%252F%252Fwww.imaios.com%252Fi%252Fs%252Fimaios-images%252Fpin.png'
         ]
     )
-    taz = client.fetch_user(1103724264974188654)
+    taz = await client.fetch_user(1103724264974188654)
     await taz.send(pic)
