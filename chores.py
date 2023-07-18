@@ -1,6 +1,5 @@
 import gspread
 import google.auth
-from googleapiclient.discovery import build
 
 
 def sheets_init():
