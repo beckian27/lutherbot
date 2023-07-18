@@ -54,8 +54,9 @@ async def on_message(msg):
         await misc.penis(client)
 
     if msg.channel.name == 'bot-test':
-        if msg.attachments:
-            print('hi')
+        # if msg.attachments:
+        #     print('hi')
+        chores.sheets_init()
             
 @client.event
 async def on_raw_reaction_add(payload):
