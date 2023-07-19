@@ -12,7 +12,7 @@ def get_schedule(sh):
     template = sh.worksheet('Template (Edit Here)')
     schedule = {}
     for column in range(1,7):
-        col = template.col_values(column, includegriddata=True)
+        col = template.col_values(column)
         day, col = col[0], col[1::]
         currentchore = ''
         hours = 0
