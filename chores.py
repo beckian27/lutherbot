@@ -21,21 +21,21 @@ def get_schedule(sh):
                 currentchore, hours = cell.split(',')
                 hours.strip()
                 currentchore = f'{day} {currentchore}'
-                print(cell)
+                #print(cell)
 
             elif cell and cell != 'MAKEUP OP':
                 if '/' in cell:
                     cell, otherperson = cell.split('/')
                     if otherperson not in schedule:
-                        schedule['otherperson'] = [currentchore, hours]
+                        schedule[otherperson] = [currentchore, hours]
                     else:
-                        schedule['otherperson'].append(currentchore)
-                        schedule['otherperson'].append(hours)
+                        schedule[otherperson].append(currentchore)
+                        schedule[otherperson].append(hours)
                 if cell not in schedule:
-                    schedule['cell'] = [currentchore, hours]
+                    schedule[cell] = [currentchore, hours]
                 else:
-                    schedule['cell'].append(currentchore)
-                    schedule['cell'].append(hours)
+                    schedule[cell].append(currentchore)
+                    schedule[cell].append(hours)
 
     print(schedule)    
                     
