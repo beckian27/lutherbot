@@ -28,16 +28,16 @@ def get_schedule(sh):
                     cell, otherperson = cell.split('/')
                     if otherperson not in schedule:
                         schedule['otherperson'] = [currentchore, hours]
-                    else
+                    else:
                         schedule['otherperson'].append(currentchore)
                         schedule['otherperson'].append(hours)
                 if cell not in schedule:
                     schedule['cell'] = [currentchore, hours]
-                else
+                else:
                     schedule['cell'].append(currentchore)
                     schedule['cell'].append(hours)
 
-        print(schedule)    
+    print(schedule)    
                     
                 
 
