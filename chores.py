@@ -18,6 +18,7 @@ def get_schedule(sh):
         hours = 0
         for cell in col:
             if cell and cell[-1].isnumeric():
+                cell = cell.replace('\n', '')
                 currentchore, hours = cell.split(',')
                 hours.strip()
                 currentchore = f'{day} {currentchore}'
