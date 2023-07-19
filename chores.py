@@ -1,6 +1,5 @@
 import gspread
 import json
-import pathlib
 
 global usernames
 usernames = {
@@ -54,7 +53,7 @@ def get_schedule(sh):
                 else:
                     schedule[cell].append(currentchore)
                     schedule[cell].append(hours)
-    file = pathlib.Path('schedule.json')
+    file = open('schedule.json')
     json.dump(schedule, file)
                     
                 
