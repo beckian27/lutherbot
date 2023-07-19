@@ -53,7 +53,7 @@ def get_schedule(sh):
                 else:
                     schedule[cell].append(currentchore)
                     schedule[cell].append(hours)
-    file = open('schedule.json')
+    file = open('schedule.json', 'w')
     json.dump(schedule, file)
                     
                 
