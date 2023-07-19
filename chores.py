@@ -1,6 +1,22 @@
 import gspread
 import json
 
+global usernames
+usernames = {
+    'failedcorporatecumslut': 'Ian Beck',
+    'benmech99': 'Ben Portelli',
+    'cassie.eissac': 'Cassie Prokopowicz',
+    'Devon_Risacher': 'Devon Risacher',
+    '_nullwalker': 'DJ Mungo',
+    'frog': 'Jonah Nunez',
+    'maebh': 'Maebh Ring',
+    'Michaela Bell': 'Michaela Bell',
+    'niickoliiver': 'Nick Oliver',
+    'pixiesharts': 'Emma Grindon',
+    'shannonmarm': 'Shannon Armstrong',
+    'sugarsean': 'Shane Collins'
+}
+
 
 def sheets_init():
     gc = gspread.service_account(filename='creds.json')
@@ -38,7 +54,7 @@ def get_schedule(sh):
                     schedule[cell].append(currentchore)
                     schedule[cell].append(hours)
 
-    print(schedule)    
+    json.dump(schedule, 'schedule.json')
                     
                 
 
