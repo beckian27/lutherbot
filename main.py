@@ -56,7 +56,7 @@ async def on_message(msg):
     if msg.channel.name == 'bot-test':
         # if msg.attachments:
         #     print('hi')
-        chores.sheets_init()
+        chores.submit_chore()
             
 @client.event
 async def on_raw_reaction_add(payload):
