@@ -72,6 +72,7 @@ async def on_raw_reaction_add(payload):
         print(str(payload.emoji))
         if str(payload.emoji) == CHECK_MARK_CODE:
             print('yay')
+        await chores.prepare_confirm(payload, client)
 
 client.run(token)
 

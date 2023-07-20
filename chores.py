@@ -1,7 +1,8 @@
 import gspread
 import json
 
-global USERNAMES
+CHORE_CHANNEL = 1106246078472409201 #1100529167201734657
+# global USERNAMES
 USERNAMES = {
     'failedcorporatecumslut': 'Ian Beck',
     'benmech99': 'Ben Portelli',
@@ -80,5 +81,6 @@ async def submit_chore(msg):
             await mymsg.add_reaction(emoji)
 
 async def prepare_confirm(payload, client):
-    channel = client.get_channel()
-    message = await channel.fetch_message(payload.message_id)
+    channel = client.get_channel(CHORE_CHANNEL)
+    msg = await channel.fetch_message(payload.message_id)
+    name = msg.split(' ')[0] + ' ' + msg.split()[1]
