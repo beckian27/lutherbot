@@ -88,4 +88,5 @@ async def prepare_confirm(payload, client):
 
     index = NUMBER_EMOJIS[str(payload.emoji)]
     chore = msg.content.split('\n')[index].strip('123456: ')
-    print(chore)
+    await msg.edit(f'{name}, {chore}')
+    await msg.add_reaction('✅')
