@@ -69,6 +69,8 @@ async def submit_chore(msg):
     chore_list = []
     for index in range(0, -1, 2):
         chore_list.append(schedule[name][index])
+        print(schedule[name][index])
+        
 
     choices = f'{name}, which chore are you submitting?'
     for index in range(len(chore_list)):
