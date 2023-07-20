@@ -3,7 +3,7 @@ import json
 
 global USERNAMES
 USERNAMES = {
-    'failedcorporatecumslut': 'Ian Beck,',
+    'failedcorporatecumslut': 'Ian Beck',
     'benmech99': 'Ben Portelli',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
