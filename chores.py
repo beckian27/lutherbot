@@ -3,7 +3,7 @@ import json
 
 global USERNAMES
 USERNAMES = {
-    'failedcorporatecumslut': 'Ian Beck',
+    'failedcorporatecumslut': 'Devon Risacher',
     'benmech99': 'Ben Portelli',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
@@ -75,6 +75,6 @@ async def submit_chore(msg):
         choices = choices + f'\n{NUMBER_EMOJIS[index]: {chore_list[index]}}'
 
     mymsg = await msg.reply(choices)
-    print(chore_list)
+    print(chore_list, schedule)
 
     return
