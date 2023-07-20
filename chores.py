@@ -67,7 +67,7 @@ async def submit_chore(msg):
 
     name = USERNAMES[msg.author.name]
     chore_list = []
-    for index in range(0, step=2):
+    for index in range(0, len(chore_list), 2):
         chore_list.append(schedule[name][index])
         print(schedule[name][index])
         
