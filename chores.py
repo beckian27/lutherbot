@@ -67,16 +67,15 @@ async def submit_chore(msg):
 
     name = USERNAMES[msg.author.name]
     chore_list = []
-    for index in range(0, len(chore_list), 2):
+    for index in range(0, len(schedule[name]), 2):
         chore_list.append(schedule[name][index])
         print(schedule[name][index])
         
 
     choices = f'{name}, which chore are you submitting?'
     index = 0
-    for cell in chore_list:
-        choices = choices + f'\n{NUMBER_EMOJIS[index]: {cell}}'
-        index = index + 1
+    for index in range(len(chore_list)):
+        choices = choices + f'\n{NUMBER_EMOJIS[index]: {chore_list[index]}}'
 
     mymsg = await msg.reply(choices)
     print(chore_list, schedule['Ian Beck'])
