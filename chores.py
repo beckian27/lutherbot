@@ -3,7 +3,7 @@ import json
 
 global USERNAMES
 USERNAMES = {
-    'failedcorporatecumslut': 'Devon Risacher',
+    'failedcorporatecumslut': 'Ian Beck,',
     'benmech99': 'Ben Portelli',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
@@ -17,7 +17,7 @@ USERNAMES = {
     'sugarsean': 'Shane Collins'
 }
 
-global NUMBER_EMOJIS
+# global NUMBER_EMOJIS
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
 
 def sheets_init():
@@ -69,16 +69,16 @@ async def submit_chore(msg):
     chore_list = []
     for index in range(0, len(schedule[name]), 2):
         chore_list.append(schedule[name][index])
-        
 
     choices = f'{name}, which chore are you submitting?'
-    index = 0
     for index in range(len(chore_list)):
-        choices = choices + f'\n{index}: {chore_list[index]}'
+        choices = choices + f'\n{index + 1}: {chore_list[index]}'
 
     mymsg = await msg.reply(choices)
     for emoji in NUMBER_EMOJIS:
         if NUMBER_EMOJIS[emoji] <= len(chore_list):
             await mymsg.add_reaction(emoji)
 
-    return
+async def prepare_confirm(payload, client):
+    channel = client.get_channel()
+    message = await channel.fetch_message(payload.message_id)
