@@ -74,6 +74,7 @@ async def submit_chore(msg):
     for index in range(len(chore_list)):
         choices = choices + f'\n{NUMBER_EMOJIS[index]: {chore_list[index]}}'
 
-    mymsg = await msg.reply(choices) 
+    mymsg = await msg.reply(choices)
+    print(chore_list)
 
     return
