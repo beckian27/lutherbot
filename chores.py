@@ -18,7 +18,7 @@ USERNAMES = {
 }
 
 global NUMBER_EMOJIS
-NUMBER_EMOJIS = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣']
+NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
 
 def sheets_init():
     gc = gspread.service_account(filename='creds.json')
@@ -69,15 +69,15 @@ async def submit_chore(msg):
     chore_list = []
     for index in range(0, len(schedule[name]), 2):
         chore_list.append(schedule[name][index])
-        print(schedule[name][index])
         
 
     choices = f'{name}, which chore are you submitting?'
     index = 0
     for index in range(len(chore_list)):
-        choices = choices + f'\n{NUMBER_EMOJIS[index]}: {chore_list[index]}'
+        choices = choices + f'\n{index}: {chore_list[index]}'
 
     mymsg = await msg.reply(choices)
-    print(chore_list, schedule['Ian Beck'])
+    for emoji in NUMBER_EMOJIS:
+        await mymsg.add_reaction(emoji)
 
     return
