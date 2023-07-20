@@ -85,7 +85,7 @@ async def prepare_confirm(payload, client):
     msg = await channel.fetch_message(payload.message_id)
     name = msg.content.split()[0] + ' ' + msg.content.split()[1]
     print(name)
-    name.strip(', ')
+    name.strip(', \n')
     print(name)
 
     index = NUMBER_EMOJIS[str(payload.emoji)]
