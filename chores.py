@@ -78,6 +78,7 @@ async def submit_chore(msg):
 
     mymsg = await msg.reply(choices)
     for emoji in NUMBER_EMOJIS:
-        await mymsg.add_reaction(emoji)
+        if NUMBER_EMOJIS[emoji] <= len(chore_list):
+            await mymsg.add_reaction(emoji)
 
     return
