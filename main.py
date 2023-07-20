@@ -74,7 +74,7 @@ async def on_raw_reaction_add(payload):
 
         if not user.bot:
             if str(payload.emoji) == CHECK_MARK_CODE and user.get_role(WORM):
-                await chores.confirm_chore()
+                await chores.confirm_chore(payload, client)
             elif str(payload.emoji) in chores.NUMBER_EMOJIS:
                 await chores.prepare_confirm(payload, client)
 
