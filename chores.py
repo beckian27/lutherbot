@@ -84,3 +84,4 @@ async def prepare_confirm(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
     msg = await channel.fetch_message(payload.message_id)
     name = msg.content.split(' ')[0] + ' ' + msg.content.split()[1]
+    print(name)
