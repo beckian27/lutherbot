@@ -87,5 +87,5 @@ async def prepare_confirm(payload, client):
     name.rstrip(',')
 
     index = NUMBER_EMOJIS[str(payload.emoji)]
-    chore = msg.content.split('\n')[index]
+    chore = msg.content.split('\n')[index].strip('123456: ')
     print(chore)
