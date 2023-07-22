@@ -25,7 +25,7 @@ def sheets_init():
     gc = gspread.service_account(filename='creds.json')
     sh = gc.open('chore sched')
 
-    get_schedule(sh)
+    return sh
 
 def get_schedule(sh):
     template = sh.worksheet('Template (Edit Here)')
