@@ -41,7 +41,7 @@ def get_schedule(sh):
             if cell and cell[-1].isnumeric():
                 cell = cell.replace('\n', '')
                 currentchore, hours = cell.split(',')
-                hours.strip()
+                hours = hours.strip()
                 currentchore = f'{day} {currentchore}'
                 #print(cell)
 
@@ -98,5 +98,12 @@ async def confirm_chore(payload, client):
     msg = await channel.fetch_message(payload.message_id)
     msg = msg.content.split(',')
     [name, chore] = msg
-    chore.strip()
-    print(name, chore)
+    chore = chore.strip()
+    sh = sheets_init()
+    template = sh.worksheet('Template (Edit Here)')
+    sh.format("A2:B2", {
+    "backgroundColor": {
+      "red": 0.0,
+      "green": 0.0,
+      "blue": 0.0
+    }})
