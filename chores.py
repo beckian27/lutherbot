@@ -104,6 +104,6 @@ async def confirm_chore(payload, client):
     template.format("A1:A1", {
     "backgroundColor": {
       "red": 0.0,
-      "green": 0.0,
+      "green": 1.0,
       "blue": 0.0
     }})
