@@ -101,7 +101,7 @@ async def confirm_chore(payload, client):
     chore = chore.strip()
     sh = sheets_init()
     template = sh.worksheet('Template (Edit Here)')
-    sh.format("A2:B2", {
+    template.format("A2:B2", {
     "backgroundColor": {
       "red": 0.0,
       "green": 0.0,
