@@ -1,8 +1,10 @@
 import gspread
 import json
+import datetime
 
 CHORE_CHANNEL = 1106246078472409201 #1100529167201734657
-# global USERNAMES
+
+# key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
     'failedcorporatecumslut': 'Ian Beck',
     'benmech99': 'Ben Portelli',
@@ -18,34 +20,37 @@ USERNAMES = {
     'sugarsean': 'Shane Collins'
 }
 
-# global NUMBER_EMOJIS
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
 
-def sheets_init():
+def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
     sh = gc.open('chore sched')
 
     return sh
 
-def get_schedule(sh):
-    template = sh.worksheet('Template (Edit Here)')
+def get_schedule(sh): # gets the chore schedule from the spreadsheet and stores it in a json
+    # manually called whenever the chore schedule is updated
+    sh = sheets_init()
+    template = sh.worksheet('Template')
     schedule = {}
 
-    for column in range(1,7):
+    for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
         col = template.col_values(column)
-        day, col = col[0], col[1::]
+        day, col = col[0], col[1::] # split data into 
         currentchore = ''
         hours = 0
 
         for cell in col:
+            # we can see if a cell is a chore name because it will end in the chore hour value
             if cell and cell[-1].isnumeric():
                 cell = cell.replace('\n', '')
                 currentchore, hours = cell.split(',')
                 hours = hours.strip()
                 currentchore = f'{day} {currentchore}'
-                #print(cell)
 
+            # nonblank cells following a chore will be names of participants
             elif cell and cell != 'MAKEUP OP':
+                # this is to handle a weird summer case where cooks switch off chores biweekly
                 if '/' in cell:
                     cell, otherperson = cell.split('/')
                     if otherperson not in schedule:
@@ -53,44 +58,56 @@ def get_schedule(sh):
                     else:
                         schedule[otherperson].append(currentchore)
                         schedule[otherperson].append(hours)
+                # what is happening here is we are appending current chore to the participants' list in the dictionary
+                # cell is the name of the person right now
+                # the format is [chore, hours, chore, hours, ...]
                 if cell not in schedule:
                     schedule[cell] = [currentchore, hours]
                 else:
                     schedule[cell].append(currentchore)
                     schedule[cell].append(hours)
 
+    # we store the schedule in a json for ease of data access and not making api calls all the time
     file = open('schedule.json', 'w')
     json.dump(schedule, file)
 
+# triggered when the worm checks off a chore
 async def submit_chore(msg):
     file = open('schedule.json', 'r')
     schedule = json.load(file)
 
     name = USERNAMES[msg.author.name]
     chore_list = []
+    # go through by twos to skip chore hour info and just get names
     for index in range(0, len(schedule[name]), 2):
         chore_list.append(schedule[name][index])
 
+    # send a message with a menu to select the correct chore
     choices = f'{name}, which chore are you submitting?'
     for index in range(len(chore_list)):
         choices = choices + f'\n{index + 1}: {chore_list[index]}'
 
+    # react with options to this message
+    # when one is selected, triggers prepare_confirm()
     mymsg = await msg.reply(choices)
     for emoji in NUMBER_EMOJIS:
         if NUMBER_EMOJIS[emoji] <= len(chore_list):
             await mymsg.add_reaction(emoji)
 
+# reformats the message to await confirmation of chore by the worm
 async def prepare_confirm(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
     msg = await channel.fetch_message(payload.message_id)
+    # splitting by space and getting the first two results gives the submitter's name
     name = msg.content.split()[0] + ' ' + msg.content.split()[1]
-    print(name)
     name = name.strip(',')
-    print(name)
 
+    # convert number emoji to int
     index = NUMBER_EMOJIS[str(payload.emoji)]
+    # we find the chore name by breaking the message by line. Conviently, 1-indexing skips the first line of text
     chore = msg.content.split('\n')[index].strip('123456: ')
     msg = await msg.edit(content=f'{name}, {chore}')
+    # when the worm clicks this check, the chore will be approved
     await msg.add_reaction('✅')
 
 async def confirm_chore(payload, client):
@@ -100,7 +117,16 @@ async def confirm_chore(payload, client):
     [name, chore] = msg
     chore = chore.strip()
     sh = sheets_init()
-    template = sh.worksheet('Template (Edit Here)')
+    
+    today = datetime.date.today()
+    sunday_offset = today.isoweekday() % 7
+    last_sunday = today - datetime.timedelta(days=sunday_offset)
+
+    sheet_name = f'Week of {last_sunday}'
+    print(sheet_name)
+    template = sh.worksheet('Template')
+
+
     template.format("A1:A1", {
     "backgroundColor": {
       "red": 0.0,
