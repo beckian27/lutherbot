@@ -108,7 +108,7 @@ async def prepare_confirm(payload, client):
     chore = msg.content.split('\n')[index].strip('123456: ')
     msg = await msg.edit(content=f'{name}, {chore}')
     # when the worm clicks this check, the chore will be approved
-    await msg.add_reaction('✅')
+    await msg.add_reaction('✅')  
 
 async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
@@ -121,10 +121,14 @@ async def confirm_chore(payload, client):
     today = datetime.date.today()
     sunday_offset = today.isoweekday() % 7
     last_sunday = today - datetime.timedelta(days=sunday_offset)
+    last_sunday = datetime.date.strftime(last_sunday, "%m/%d/%Y")
 
     sheet_name = f'Week of {last_sunday}'
     print(sheet_name)
-    template = sh.worksheet('Template')
+
+    thisweek = sh.worksheet(sheet_name)
+    print(thisweek.values.get('A1:A1'))
+
 
 
     template.format("A1:A1", {
@@ -133,3 +137,5 @@ async def confirm_chore(payload, client):
       "green": 1.0,
       "blue": 0.0
     }})
+
+
