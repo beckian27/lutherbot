@@ -128,7 +128,8 @@ async def confirm_chore(payload, client):
     try:
         thisweek = sh.worksheet(sheet_name)
     except gspread.WorksheetNotFound:
-        print('hi')
+        template = sh.worksheet('Template')
+        template.duplicate(new_sheet_name=sheet_name)
 
 
 
