@@ -118,7 +118,7 @@ async def confirm_chore(payload, client):
     chore = chore.strip()
     sh = sheets_init()
     
-    today = datetime.date.today()
+    today = datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
     last_sunday = today - datetime.timedelta(days=sunday_offset)
     last_sunday = datetime.date.strftime(last_sunday, "%m/%d/%Y")
@@ -130,14 +130,13 @@ async def confirm_chore(payload, client):
     except gspread.WorksheetNotFound:
         template = sh.worksheet('Template')
         template.duplicate(new_sheet_name=sheet_name)
+        thisweek = sh.worksheet(sheet_name)
 
-
-
-    template.format("A1:A1", {
-    "backgroundColor": {
-      "red": 0.0,
-      "green": 1.0,
-      "blue": 0.0
+    thisweek.format("A1:A1", {
+        "backgroundColor": {
+        "red": 0.0,
+        "green": 1.0,
+        "blue": 0.0
     }})
 
 
