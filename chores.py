@@ -125,9 +125,10 @@ async def confirm_chore(payload, client):
 
     sheet_name = f'Week of {last_sunday}'
     print(sheet_name)
-
-    thisweek = sh.worksheet(sheet_name)
-    print(thisweek.values.get('A1:A1'))
+    try:
+        thisweek = sh.worksheet(sheet_name)
+    except gspread.WorksheetNotFound:
+        print(thisweek.values.get('A1:A1'))
 
 
 
