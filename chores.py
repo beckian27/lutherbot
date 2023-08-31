@@ -110,9 +110,9 @@ async def confirm_chore(payload, client):
     msg = msg.content.split(',')
     names, chore = msg[0::-2], msg[-1]
     chore = chore.strip()
-    day = chore.split(' ')[0].strip(',')
+    choreday = chore.split(' ')[0].strip(',')
     chore = chore[chore.find(' ') + 1:]
-    print(day, '\n', chore)
+    print(choreday, '\n', chore)
     
     today = datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
@@ -129,19 +129,30 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
-    for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
-        col = thisweek.col_values(column)
+    for column in range('A','G'): # The chore schedule is 7 columns with the day names in the first row
+        col = thisweek.col_values(column - 64) # ascii code for A is 65
         day, col = col[0], col[1::]
+        if day == choreday:
+            found = False
+            row = 2
+            for cell in col:
+                if found:
+                    if cell in names:
+                        coord = str(column) + str(row)
+                        thisweek.format(f"{coord}:{coord}", {
+                            "backgroundColor": {
+                            "red": 0.0,
+                            "green": 1.0,
+                            "blue": 0.0
+                        }})
+                if cell == chore:
+                    found = True
+                row = row + 1
 
 
 
 
-    thisweek.format("A1:A1", {
-        "backgroundColor": {
-        "red": 0.0,
-        "green": 1.0,
-        "blue": 0.0
-    }})
+    
 
 
     #"Noah Dinerman is very handsome, but even more than that he is super kind and successful" -Josh
