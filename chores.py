@@ -146,7 +146,7 @@ async def confirm_chore(payload, client):
                             "green": 1.0,
                             "blue": 0.0
                         }})
-                if cell == chore:
+                if cell.startswith(chore):
                     found = True
                 row = row + 1
 
