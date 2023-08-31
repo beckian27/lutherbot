@@ -109,9 +109,10 @@ async def confirm_chore(payload, client):
     msg = await channel.fetch_message(payload.message_id)
     msg = msg.content.split(',')
     names, chore = msg[0::-2], msg[-1]
-    print(names, chore)
     chore = chore.strip()
-    sh = sheets_init()
+    day = chore.split(' ')[0].strip(',')
+    chore = chore[chore.find(' ') + 1:]
+    print(day, chore)
     
     today = datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
@@ -120,6 +121,7 @@ async def confirm_chore(payload, client):
 
     sheet_name = f'Week of {last_sunday}'
     print(sheet_name)
+    sh = sheets_init()
     try:
         thisweek = sh.worksheet(sheet_name)
     except gspread.WorksheetNotFound:
