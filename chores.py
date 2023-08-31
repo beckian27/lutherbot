@@ -129,8 +129,8 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
-    for column in range('A','G'): # The chore schedule is 7 columns with the day names in the first row
-        col = thisweek.col_values(column - 64) # ascii code for A is 65
+    for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
+        col = thisweek.col_values(column) # ascii code for A is 65
         day, col = col[0], col[1::]
         if day == choreday:
             found = False
@@ -138,7 +138,7 @@ async def confirm_chore(payload, client):
             for cell in col:
                 if found:
                     if cell in names:
-                        coord = str(column) + str(row)
+                        coord = chr(column) + str(row)
                         thisweek.format(f"{coord}:{coord}", {
                             "backgroundColor": {
                             "red": 0.0,
