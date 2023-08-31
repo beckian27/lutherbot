@@ -7,17 +7,11 @@ CHORE_CHANNEL = 1106246078472409201 #1100529167201734657
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
     'failedcorporatecumslut': 'Ian Beck',
-    'benmech99': 'Ben Portelli',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
-    'frog': 'Jonah Nunez',
-    'maebh': 'Maebh Ring',
     'Michaela Bell': 'Michaela Bell',
     'niickoliiver': 'Nick Oliver',
-    'pixiesharts': 'Emma Grindon',
-    'shannonmarm': 'Shannon Armstrong',
-    'sugarsean': 'Shane Collins'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
@@ -36,7 +30,7 @@ def get_schedule(sh): # gets the chore schedule from the spreadsheet and stores 
 
     for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
         col = template.col_values(column)
-        day, col = col[0], col[1::] # split data into 
+        day, col = col[0], col[1::] # split data
         currentchore = ''
         hours = 0
 
@@ -85,7 +79,7 @@ async def submit_chore(msg):
     # send a message with a menu to select the correct chore
     choices = f'{name}, which chore are you submitting?'
     for index in range(len(chore_list)):
-        choices = choices + f'\n{index + 1}: {chore_list[index]}'
+        choices = f'{choices}\n{index + 1}: {chore_list[index]}'
 
     # react with options to this message
     # when one is selected, triggers prepare_confirm()
@@ -102,7 +96,7 @@ async def prepare_confirm(payload, client):
     name = msg.content.split()[0] + ' ' + msg.content.split()[1]
     name = name.strip(',')
 
-    # convert number emoji to int
+    # convert number emoji to int using a dictionary to decode
     index = NUMBER_EMOJIS[str(payload.emoji)]
     # we find the chore name by breaking the message by line. Conviently, 1-indexing skips the first line of text
     chore = msg.content.split('\n')[index].strip('123456: ')
@@ -114,7 +108,7 @@ async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
     msg = await channel.fetch_message(payload.message_id)
     msg = msg.content.split(',')
-    [name, chore] = msg
+    [names], chore = msg[0::-2], msg[-1]
     chore = chore.strip()
     sh = sheets_init()
     
@@ -132,6 +126,13 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
+    for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
+        col = thisweek.col_values(column)
+        day, col = col[0], col[1::]
+
+
+
+
     thisweek.format("A1:A1", {
         "backgroundColor": {
         "red": 0.0,
@@ -139,4 +140,10 @@ async def confirm_chore(payload, client):
         "blue": 0.0
     }})
 
+
+    #"Noah Dinerman is very handsome, but even more than that he is super kind and successful" -Josh
+    #Ben 2 Loves intersectional feminism
+    #Olivia has strong opinions on modern feminism
+
+    #simplify
 
