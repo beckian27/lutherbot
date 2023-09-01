@@ -10,8 +10,28 @@ USERNAMES = {
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
-    'Michaela Bell': 'Michaela Bell',
     'niickoliiver': 'Nick Oliver',
+    'reckless__': 'Jacob Phelps',
+    'Abigail Zoetewey#1346': 'Abby Zoetewey',
+    'Adam#8227': 'Adam Kane',
+    'Awmeo Azad#0117': 'Awmeo Azad',
+    'lights0123': 'Ben Schattinger',
+    'benjyn.': 'Ben Nacht',
+    'benrecht#6737': 'Ben Recht',
+    'brandon23669#7890': 'Brandon Palomino-Alonso',
+    'Emma0022#8953': 'Emma Bassett',
+    'fredtheredokay': 'Frederik Gøtske',
+    'haylie#5718': 'Haylie Toth',
+    'dathrax.': 'Jack Handzel',
+    'johnfoxbro': 'John Fox',
+    'lilianagarcia_73938': 'Lily Garcia',
+    'crab3296': 'Ashton Ross',
+    'mayaschne#7983': 'Maya Schneider',
+    'madisonisdead': 'Madison Dennis',
+    'ndinolfo': 'Nate Dinolfo',
+    'nohdinerman#6741': 'Noah Dinerman',
+
+
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
@@ -19,7 +39,6 @@ NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️�
 def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
     sh = gc.open('chore sched')
-
     return sh
 
 def get_schedule(sh): # gets the chore schedule from the spreadsheet and stores it in a json
@@ -44,14 +63,14 @@ def get_schedule(sh): # gets the chore schedule from the spreadsheet and stores 
 
             # nonblank cells following a chore will be names of participants
             elif cell and cell != 'MAKEUP OP':
-                # this is to handle a weird summer case where cooks switch off chores biweekly
-                if '/' in cell:
-                    cell, otherperson = cell.split('/')
-                    if otherperson not in schedule:
-                        schedule[otherperson] = [currentchore, hours]
-                    else:
-                        schedule[otherperson].append(currentchore)
-                        schedule[otherperson].append(hours)
+                # # this is to handle a weird summer case where cooks switch off chores biweekly
+                # if '/' in cell:
+                #     cell, otherperson = cell.split('/')
+                #     if otherperson not in schedule:
+                #         schedule[otherperson] = [currentchore, hours]
+                #     else:
+                #         schedule[otherperson].append(currentchore)
+                #         schedule[otherperson].append(hours)
                 # what is happening here is we are appending current chore to the participants' list in the dictionary
                 # cell is the name of the person right now
                 # the format is [chore, hours, chore, hours, ...]
@@ -102,7 +121,7 @@ async def prepare_confirm(payload, client):
     chore = msg.content.split('\n')[index].strip('123456: ')
     msg = await msg.edit(content=f'{name}, {chore}')
     # when the worm clicks this check, the chore will be approved
-    await msg.add_reaction('✅')  
+    await msg.add_reaction('✅')
 
 async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
@@ -130,7 +149,7 @@ async def confirm_chore(payload, client):
         thisweek = sh.worksheet(sheet_name)
 
     for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
-        col = thisweek.col_values(column) # ascii code for A is 65
+        col = thisweek.col_values(column)
         day, col = col[0], col[1::]
         if day == choreday:
             found = False
@@ -140,11 +159,11 @@ async def confirm_chore(payload, client):
                     if cell in names:
                         coord = chr(column + 64) + str(row)
                         print(coord)
-                        thisweek.format(f"{coord}:{coord}", {
-                            "backgroundColor": {
-                            "red": 0.0,
-                            "green": 1.0,
-                            "blue": 0.0
+                        thisweek.format(f'{coord}:{coord}', {
+                            'backgroundColor': {
+                            'red': 0.0,
+                            'green': 1.0,
+                            'blue': 0.0
                         }})
                 if cell.startswith(chore):
                     found = True

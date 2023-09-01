@@ -12,7 +12,9 @@ async def make_shopping_list(msg, client, id, check):
 
     # generates alphabetized shopping list in private channel
     # adds a reaction to each item to act as a check off button
+    print(requests)
     for request in sorted(requests):
+        print(request)
         mymsg = await fs_dm.send(request)
         await mymsg.add_reaction(check)
         
