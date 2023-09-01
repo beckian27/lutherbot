@@ -57,6 +57,9 @@ async def on_message(msg):
         # if msg.attachments:
         #     print('hi')
         await chores.submit_chore(msg)
+
+    if msg.content.startswith('!scan'):
+        chores.get_schedule()
             
 @client.event
 async def on_raw_reaction_add(payload):

@@ -6,7 +6,7 @@ CHORE_CHANNEL = 1100529167201734657
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    'failedcorporatecumslut': 'Ian Beck',
+    'failedcorporatecumslut': 'Abby Zoetewey',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
@@ -41,7 +41,7 @@ def sheets_init(): # connect to and return spreadsheet object
     sh = gc.open('Fall 2023 Chore Schedule')
     return sh
 
-def get_schedule(sh): # gets the chore schedule from the spreadsheet and stores it in a json
+def get_schedule(): # gets the chore schedule from the spreadsheet and stores it in a json
     # manually called whenever the chore schedule is updated
     sh = sheets_init()
     template = sh.worksheet('Schedule by Day')
