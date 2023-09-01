@@ -164,9 +164,9 @@ async def confirm_chore(payload, client):
                         print(coord)
                         thisweek.format(f'{coord}:{coord}', {
                             'backgroundColor': {
-                            'red': 0.0,
-                            'green': 1.0,
-                            'blue': 0.0
+                            'red': 0.8509803921568627,
+                            'green': 0.9176470588235294,
+                            'blue': 0.8274509803921568
                         }})
                 if cell.startswith(chore):
                     found = True
