@@ -6,7 +6,7 @@ CHORE_CHANNEL = 1100529167201734657
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    'failedcorporatecumslut': 'Abby Zoetewey',
+    'failedcorporatecumslut': 'Ian Beck',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
@@ -123,6 +123,8 @@ async def prepare_confirm(payload, client):
     msg = await msg.edit(content=f'{name}, {chore}')
     # when the worm clicks this check, the chore will be approved
     await msg.add_reaction('✅')
+    await msg.channel.send('slay')
+
 
 async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)

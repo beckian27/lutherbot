@@ -40,10 +40,7 @@ async def on_message(msg):
 
     if 'rat' in msg.content.lower() and not msg.author.bot:
         await misc.send_rat(msg)
-        
-    if msg.channel.name == 'chore-submissions' and not msg.author.bot:
-        await msg.channel.send('slay')
-        
+                
     if msg.content == 'what':
         await msg.channel.send('chicken butt')
     
@@ -54,12 +51,11 @@ async def on_message(msg):
         await misc.penis(client)
 
     if msg.channel.name == 'chore-submissions' and not msg.author.bot:
-        # if msg.attachments:
-        #     print('hi')
-        await chores.submit_chore(msg)
-
-    if msg.content.startswith('!scan'):
-        chores.get_schedule()
+        if msg.attachments:
+            await chores.submit_chore(msg)
+        
+        if msg.content.startswith('!update') and msg.author.get_role(WORM):
+            chores.get_schedule()
             
 @client.event
 async def on_raw_reaction_add(payload):
