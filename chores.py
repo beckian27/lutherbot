@@ -30,8 +30,9 @@ USERNAMES = {
     'madisonisdead': 'Madison Dennis',
     'ndinolfo': 'Nate Dinolfo',
     'nohdinerman#6741': 'Noah Dinerman',
-
-
+    'elizabeth_camilli#2287': 'Liz Camilli',
+    'avameester': 'Ava Meester',
+    'kushal_80083': 'Kushal Sodum'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
