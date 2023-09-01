@@ -2,7 +2,7 @@ import gspread
 import json
 import datetime
 
-CHORE_CHANNEL = 1106246078472409201 #1100529167201734657
+CHORE_CHANNEL = 1100529167201734657
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
@@ -38,13 +38,13 @@ NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️�
 
 def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
-    sh = gc.open('chore sched')
+    sh = gc.open('Fall 2023 Chore Schedule')
     return sh
 
 def get_schedule(sh): # gets the chore schedule from the spreadsheet and stores it in a json
     # manually called whenever the chore schedule is updated
     sh = sheets_init()
-    template = sh.worksheet('Template')
+    template = sh.worksheet('Schedule by Day')
     schedule = {}
 
     for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
@@ -144,7 +144,7 @@ async def confirm_chore(payload, client):
     try:
         thisweek = sh.worksheet(sheet_name)
     except gspread.WorksheetNotFound:
-        template = sh.worksheet('Template')
+        template = sh.worksheet('Schedule by Day')
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
