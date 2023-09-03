@@ -51,6 +51,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
         col = template.col_values(column)
         day, col = col[0], col[1::] # split data
+        print(day)
         currentchore = ''
         hours = 0
 
@@ -134,7 +135,6 @@ async def confirm_chore(payload, client):
     chore = chore.strip()
     choreday = chore.split(' ')[0].strip(',')
     chore = chore[chore.find(' ') + 1:]
-    print(choreday, '\n', chore)
     
     today = datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
@@ -142,7 +142,6 @@ async def confirm_chore(payload, client):
     last_sunday = datetime.date.strftime(last_sunday, "%m/%d/%Y")
 
     sheet_name = f'Week of {last_sunday}'
-    print(sheet_name)
     sh = sheets_init()
     try:
         thisweek = sh.worksheet(sheet_name)
@@ -161,7 +160,6 @@ async def confirm_chore(payload, client):
                 if found:
                     if cell in names:
                         coord = chr(column + 64) + str(row)
-                        print(coord)
                         thisweek.format(f'{coord}:{coord}', {
                             'backgroundColor': {
                             'red': 0.8509803921568627,
