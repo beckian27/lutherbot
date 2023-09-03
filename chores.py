@@ -48,7 +48,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     template = sh.worksheet('Schedule by Day')
     schedule = {}
 
-    for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
+    for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
         col = template.col_values(column)
         day, col = col[0], col[1::] # split data
         print(day)
@@ -150,7 +150,7 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
-    for column in range(1,7): # The chore schedule is 7 columns with the day names in the first row
+    for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
         col = thisweek.col_values(column)
         day, col = col[0], col[1::]
         if day == choreday:
