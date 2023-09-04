@@ -55,8 +55,8 @@ async def on_message(msg):
             print('hi')
             await chores.submit_chore(msg)
         
-    if msg.content.startswith('!update') and msg.author.get_role(WORM):
-        chores.get_schedule()
+        if msg.content.startswith('!update') and msg.author.get_role(WORM):
+            chores.get_schedule()
             
 @client.event
 async def on_raw_reaction_add(payload):
