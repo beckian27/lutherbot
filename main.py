@@ -52,6 +52,7 @@ async def on_message(msg):
 
     if msg.channel.name == 'chore-submissions' and not msg.author.bot:
         if msg.attachments:
+            print('hi')
             await chores.submit_chore(msg)
         
     if msg.content.startswith('!update') and msg.author.get_role(WORM):
