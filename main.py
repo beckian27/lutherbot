@@ -50,7 +50,7 @@ async def on_message(msg):
     if 'penis' in msg.content.lower():
         await misc.penis(client)
 
-    if msg.channel.name == 'chore-submissions' and not msg.author.bot:
+    if msg.channel.name == 'bot-test' and not msg.author.bot:
         if msg.attachments:
             print('hi')
             await chores.submit_chore(msg)
