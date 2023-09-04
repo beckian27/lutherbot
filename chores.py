@@ -2,7 +2,7 @@ import gspread
 import json
 import datetime
 
-CHORE_CHANNEL = 1106246078472409201#1100529167201734657
+CHORE_CHANNEL = 1100529167201734657#1106246078472409201
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
