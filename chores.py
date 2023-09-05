@@ -117,7 +117,7 @@ async def prepare_confirm(payload, client):
     names = [name]
     file = open('schedule.json', 'r')
     schedule = json.load(file)
-
+    print('hi')
     for person in schedule:
         if chore in schedule[person]:
             print('hi')
