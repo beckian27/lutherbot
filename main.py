@@ -34,6 +34,13 @@ async def on_message(msg):
     # for the worm to create makeup chores
     elif msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
         await makeups.create_makeup(msg, CHECK_MARK_CODE)
+
+    elif msg.channel.name == 'chore-submissions' and not msg.author.bot:
+        if msg.attachments:
+            await chores.submit_chore(msg)
+        
+        if msg.content.startswith('!update') and msg.author.get_role(WORM):
+            chores.get_schedule()
     
     if 'emo' in msg.content.lower(): 
         await misc.emo(msg)
@@ -49,14 +56,6 @@ async def on_message(msg):
 
     if 'penis' in msg.content.lower():
         await misc.penis(client)
-
-    if msg.channel.name == 'chore-submissions' and not msg.author.bot:
-        if msg.attachments:
-            print('hi')
-            await chores.submit_chore(msg)
-        
-        if msg.content.startswith('!update') and msg.author.get_role(WORM):
-            chores.get_schedule()
             
 @client.event
 async def on_raw_reaction_add(payload):

@@ -54,7 +54,6 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
         col = template.col_values(column)
         day, col = col[0], col[1::] # split data
-        print(day)
         currentchore = ''
         hours = 0
 
@@ -68,17 +67,6 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
 
             # nonblank cells following a chore will be names of participants
             elif cell and cell != 'MAKEUP OP':
-                # # this is to handle a weird summer case where cooks switch off chores biweekly
-                # if '/' in cell:
-                #     cell, otherperson = cell.split('/')
-                #     if otherperson not in schedule:
-                #         schedule[otherperson] = [currentchore, hours]
-                #     else:
-                #         schedule[otherperson].append(currentchore)
-                #         schedule[otherperson].append(hours)
-                # what is happening here is we are appending current chore to the participants' list in the dictionary
-                # cell is the name of the person right now
-                # the format is [chore, hours, chore, hours, ...]
                 if cell not in schedule:
                     schedule[cell] = [currentchore, hours]
                 else:
@@ -125,6 +113,16 @@ async def prepare_confirm(payload, client):
     # we find the chore name by breaking the message by line. Conviently, 1-indexing skips the first line of text
     chore = msg.content.split('\n')[index].strip('123456: ')
     msg = await msg.edit(content=f'{name}, {chore}')
+
+    names = [name]
+    file = open('schedule.json', 'r')
+    schedule = json.load(file)
+
+    for person in schedule:
+        if chore in schedule[person]:
+            names.append[schedule[person]]
+    
+    print(names)
     # when the worm clicks this check, the chore will be approved
     await msg.add_reaction('✅')
     await msg.channel.send('slay')
@@ -169,6 +167,7 @@ async def confirm_chore(payload, client):
                             'green': 0.9176470588235294,
                             'blue': 0.8274509803921568
                         }})
+                        found = False
                 if cell.startswith(chore):
                     found = True
                 row = row + 1
