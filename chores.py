@@ -115,6 +115,7 @@ async def prepare_confirm(payload, client):
     msg = await msg.edit(content=f'{name}, {chore}')
 
     names = [name]
+    print(name)
     file = open('schedule.json', 'r')
     schedule = json.load(file)
     print('hi')
