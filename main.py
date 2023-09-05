@@ -35,7 +35,7 @@ async def on_message(msg):
     elif msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
         await makeups.create_makeup(msg, CHECK_MARK_CODE)
 
-    elif msg.channel.name == 'bot-test' and not msg.author.bot:
+    elif msg.channel.name == 'chore-submissions' and not msg.author.bot:
         if msg.attachments:
             await chores.submit_chore(msg)
         
@@ -72,6 +72,14 @@ async def on_raw_reaction_add(payload):
         user = await server.fetch_member(payload.user_id)
 
         if not user.bot:
+            channel = client.get_channel(chores.CHORE_CHANNEL)
+            msg = await channel.fetch_message(payload.message_id)
+            if msg.startswith('Also submitting for '):
+                if str(payload.emoji) == CHECK_MARK_CODE:
+                    await chores.confirm_teammate(msg)
+                elif str(payload.emoji) == '❌':
+                    await chores.decline_teammate(msg)
+
             if str(payload.emoji) == CHECK_MARK_CODE and user.get_role(WORM):
                 await chores.confirm_chore(payload, client)
             elif str(payload.emoji) in chores.NUMBER_EMOJIS:
