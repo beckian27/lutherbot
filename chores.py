@@ -120,6 +120,7 @@ async def prepare_confirm(payload, client):
 
     for person in schedule:
         if chore in schedule[person]:
+            print('hi')
             names.append[schedule[person]]
     
     print(names)
