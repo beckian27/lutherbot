@@ -128,6 +128,11 @@ async def prepare_confirm(payload, client):
     print(names)
     # when the worm clicks this check, the chore will be approved
     await msg.add_reaction('✅')
+    for name in names:
+        mymsg = await msg.reply(f'Also submitting for {name}?')
+        await mymsg.add_reaction('✅')
+        await mymsg.add_reaction('❌')
+
     await msg.channel.send('slay')
 
 
@@ -156,10 +161,10 @@ async def confirm_chore(payload, client):
 
     for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
         col = thisweek.col_values(column)
-        day, col = col[0], col[1::]
-        if day == choreday:
-            found = False
-            row = 2
+        day, col = col[0], col[1::] # column format is day name followed by chore title/participant cells
+        if day == choreday: # search for today's column in spreadsheet
+            found = False # days are inconsistent with formatting so we have to parse for the chore
+            row = 2 # skip the day name cell
             for cell in col:
                 if found:
                     if cell in names:
@@ -170,7 +175,7 @@ async def confirm_chore(payload, client):
                             'green': 0.9176470588235294,
                             'blue': 0.8274509803921568
                         }})
-                        found = False
+                        names.remove(cell)
                 if cell.startswith(chore):
                     found = True
                 row = row + 1
