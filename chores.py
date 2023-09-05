@@ -122,7 +122,7 @@ async def prepare_confirm(payload, client):
     for person in schedule:
         if chore in schedule[person]:
             print('hi')
-            names.append(schedule[person])
+            names.append(person)
     
     print(names)
     # when the worm clicks this check, the chore will be approved
