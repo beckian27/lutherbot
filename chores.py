@@ -128,10 +128,11 @@ async def prepare_confirm(payload, client):
     print(names)
     # when the worm clicks this check, the chore will be approved
     await msg.add_reaction('✅')
-    for name in names:
-        mymsg = await msg.reply(f'Also submitting for {name}?')
-        await mymsg.add_reaction('✅')
-        await mymsg.add_reaction('❌')
+    for person in names:
+        if person != name:
+            mymsg = await msg.reply(f'Also submitting for {person}?')
+            await mymsg.add_reaction('✅')
+            await mymsg.add_reaction('❌')
 
     await msg.channel.send('slay')
 
