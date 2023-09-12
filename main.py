@@ -76,7 +76,7 @@ async def on_raw_reaction_add(payload):
             msg = await channel.fetch_message(payload.message_id)
             if msg.content.startswith('Also submitting for '):
                 if str(payload.emoji) == CHECK_MARK_CODE:
-                    await chores.confirm_teammate(msg)
+                    await chores.confirm_teammate(msg, client)
                 elif str(payload.emoji) == '❌':
                     channel = client.get_channel(chores.CHORE_CHANNEL)
                     await channel.delete_messages([msg])

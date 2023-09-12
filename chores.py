@@ -141,8 +141,9 @@ async def prepare_confirm(payload, client):
 
     await msg.channel.send('slay')
 
-async def confirm_teammate(msg):
-    choremsg = msg.reference
+async def confirm_teammate(msg, client):
+    channel = client.get_channel(msg.reference.channel_id)
+    choremsg = await channel.fetch_message(msg.reference.message_id)
     name = msg.content.removeprefix('Also submitting for ').strip('?')
     print(name)
     await choremsg.edit(content=f'{name}, {choremsg.content}')
