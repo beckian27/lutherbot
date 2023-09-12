@@ -124,17 +124,13 @@ async def prepare_confirm(payload, client):
     msg = await msg.edit(content=f'{name}, {chore}')
 
     names = [name]
-    print(name)
     file = open('schedule.json', 'r')
     schedule = json.load(file)
-    print('hi')
     for person in schedule:
         if chore in schedule[person]:
-            print('hi')
             if person not in [name, 'Makeup']:
                 names.append(person)
     
-    print(names)
     # when the worm clicks this check, the chore will be approved
     await msg.add_reaction('✅')
     # for person in names:
