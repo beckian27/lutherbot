@@ -153,6 +153,7 @@ async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
     msg = await channel.fetch_message(payload.message_id)
     msg = msg.content.split(',')
+    print(msg)
     names, chore = msg[::-2], msg[-1]
 
     print(names,chore)
