@@ -158,6 +158,7 @@ async def confirm_chore(payload, client):
     chore = chore.strip()
     choreday = chore.split(' ')[0].strip(',')
     chore = chore[chore.find(' ') + 1:]
+    print(chore)
     
     today = datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
