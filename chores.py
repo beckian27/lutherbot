@@ -2,11 +2,12 @@ import gspread
 import json
 import datetime
 
-CHORE_CHANNEL = 1100529167201734657#1106246078472409201
+#CHORE_CHANNEL = 1100529167201734657
+CHORE_CHANNEL = 1106246078472409201 #test channel
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    'failedcorporatecumslut': 'Noah Dinerman',
+    'failedcorporatecumslut': 'Awmeo Azad',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
@@ -39,6 +40,14 @@ USERNAMES = {
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
+
+weekdays = {0: "Sunday",
+            1: "Monday",
+            2: "Tuesday",
+            3: "Wednesday",
+            4: "Thursday",
+            5: "Friday",
+            6: "Saturday"}
 
 def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
@@ -138,12 +147,8 @@ async def prepare_confirm(payload, client):
 
 async def confirm_teammate(msg):
     choremsg = msg.reference
-
-    return
-
-async def decline_teammate(msg):
-    return
-
+    name = msg.content.removeprefix('Also submitting for ').strip('?')
+    
 
 async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
@@ -156,6 +161,9 @@ async def confirm_chore(payload, client):
     
     today = datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
+    
+    if sunday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
+        sunday_offset += 7
     last_sunday = today - datetime.timedelta(days=sunday_offset)
     last_sunday = datetime.date.strftime(last_sunday, "%m/%d/%Y")
 
