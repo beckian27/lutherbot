@@ -2,8 +2,8 @@ import gspread
 import json
 import datetime
 
-#CHORE_CHANNEL = 1100529167201734657
-CHORE_CHANNEL = 1106246078472409201 #test channel
+CHORE_CHANNEL = 1100529167201734657
+#CHORE_CHANNEL = 1106246078472409201 #test channel
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
@@ -133,11 +133,11 @@ async def prepare_confirm(payload, client):
     
     # when the worm clicks this check, the chore will be approved
     await msg.add_reaction('✅')
-    for person in names:
-        if person != name:
-            mymsg = await msg.reply(f'Also submitting for {person}?')
-            await mymsg.add_reaction('✅')
-            await mymsg.add_reaction('❌')
+    # for person in names:
+    #     if person != name:
+    #         mymsg = await msg.reply(f'Also submitting for {person}?')
+    #         await mymsg.add_reaction('✅')
+    #         await mymsg.add_reaction('❌')
 
     await msg.channel.send('slay')
 
