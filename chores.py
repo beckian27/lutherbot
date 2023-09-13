@@ -148,7 +148,7 @@ async def confirm_teammate(msg, client):
     name = msg.content.removeprefix('Also submitting for ').strip('?')
     print(name)
     await choremsg.edit(content=f'{name}, {choremsg.content}')
-    await channel.delete_messages(msg)
+    await channel.delete_messages([msg])
 
 
 async def confirm_chore(payload, client):
