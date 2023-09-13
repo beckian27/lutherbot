@@ -154,8 +154,9 @@ async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
     msg = await channel.fetch_message(payload.message_id)
     msg = msg.content.split(',')
-    for word in msg:
-        word = word.strip()
+    for i, word in enumerate(msg):
+        msg[i] = word.strip()
+        
     print(msg)
     names, chore = msg[:-1], msg[-1]
 
@@ -169,6 +170,7 @@ async def confirm_chore(payload, client):
     
     if sunday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
         sunday_offset += 7
+
     last_sunday = today - datetime.timedelta(days=sunday_offset)
     last_sunday = datetime.date.strftime(last_sunday, "%m/%d/%Y")
 
