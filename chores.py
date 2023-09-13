@@ -36,7 +36,8 @@ USERNAMES = {
     'Kushal': 'Kushal Sodum',
     'victo_63014': 'Victo Hungerman',
     'Alex Kautz': 'Alex Kautz',
-    'ameninga': 'Amanda Meninga'
+    'ameninga': 'Amanda Meninga',
+    'shirarb': 'Shira Baker'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
@@ -188,6 +189,7 @@ async def confirm_chore(payload, client):
             for cell in col:
                 if found:
                     if cell in names:
+                        print(cell)
                         coord = chr(column + 64) + str(row)
                         thisweek.format(f'{coord}:{coord}', {
                             'backgroundColor': {
