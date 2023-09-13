@@ -2,8 +2,8 @@ import gspread
 import json
 import datetime
 
-#CHORE_CHANNEL = 1100529167201734657
-CHORE_CHANNEL = 1106246078472409201 #test channel
+CHORE_CHANNEL = 1100529167201734657
+#CHORE_CHANNEL = 1106246078472409201 #test channel
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
@@ -146,7 +146,6 @@ async def confirm_teammate(msg, client):
     channel = client.get_channel(msg.reference.channel_id)
     choremsg = await channel.fetch_message(msg.reference.message_id)
     name = msg.content.removeprefix('Also submitting for ').strip('?')
-    print(name)
     await choremsg.edit(content=f'{name}, {choremsg.content}')
     await channel.delete_messages([msg])
 
@@ -157,14 +156,10 @@ async def confirm_chore(payload, client):
     msg = msg.content.split(',')
     for i, word in enumerate(msg):
         msg[i] = word.strip()
-        
-    print(msg)
     names, chore = msg[:-1], msg[-1]
 
-    print(names,chore)
     choreday = chore.split(' ')[0].strip(',')
     chore = chore[chore.find(' ') + 1:]
-    print(chore)
     
     today = datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
@@ -193,7 +188,6 @@ async def confirm_chore(payload, client):
             for cell in col:
                 if found:
                     if cell in names:
-                        print(cell)
                         coord = chr(column + 64) + str(row)
                         thisweek.format(f'{coord}:{coord}', {
                             'backgroundColor': {
@@ -202,7 +196,6 @@ async def confirm_chore(payload, client):
                             'blue': 0.8274509803921568
                         }})
                         names.remove(cell)
-                        print(names)
                 if cell.startswith(chore):
                     found = True
                 row = row + 1
