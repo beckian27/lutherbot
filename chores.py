@@ -154,11 +154,12 @@ async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
     msg = await channel.fetch_message(payload.message_id)
     msg = msg.content.split(',')
+    for word in msg:
+        word = word.strip()
     print(msg)
     names, chore = msg[:-1], msg[-1]
 
     print(names,chore)
-    chore = chore.strip()
     choreday = chore.split(' ')[0].strip(',')
     chore = chore[chore.find(' ') + 1:]
     print(chore)
