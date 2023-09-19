@@ -50,12 +50,6 @@ async def on_message(msg):
                 
     if msg.content == 'what':
         await msg.channel.send('chicken butt')
-    
-    if msg.content.startswith('!partytime') or msg.content == 'party time': # IMPORTANT DO NOT DELETE
-        await msg.channel.send('where the bitches at')
-
-    if 'penis' in msg.content.lower():
-        await misc.penis(client)
             
 @client.event
 async def on_raw_reaction_add(payload):

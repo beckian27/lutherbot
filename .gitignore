@@ -9,3 +9,4 @@ venv3/
 .venv/
 .pytest_cache
 creds.json
+archive.txt

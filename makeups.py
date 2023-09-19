@@ -17,7 +17,7 @@ async def claim_makeup(payload, client, serve, makeup, worm):
         if message.author.bot:
             text = message.content
             await channel.delete_messages([message])
-            
+
             if not user.get_role(worm):
                 text = text.removesuffix('\nClick the check mark to claim this chore!')
                 text = f'{text}\n{user.display_name} claimed this chore!'
