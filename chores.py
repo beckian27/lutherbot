@@ -34,7 +34,7 @@ USERNAMES = {
     'elizabeth_camilli': 'Liz Camilli',
     'avameester': 'Ava Meester',
     'Kushal': 'Kushal Sodum',
-    'victo_63014': 'Victo Hungerman',
+    'bict0': 'Victo Hungerman',
     'Alex Kautz': 'Alex Kautz',
     'ameninga': 'Amanda Meninga',
     'shirarb': 'Shira Baker',
