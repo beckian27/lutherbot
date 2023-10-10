@@ -190,6 +190,7 @@ async def confirm_chore(payload, client):
             found = False # days are inconsistent with formatting so we have to parse for the chore
             row = 2 # skip the day name cell
             for cell in col:
+                print(cell)
                 if found:
                     if cell in names:
                         coord = chr(column + 64) + str(row)
