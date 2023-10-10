@@ -48,8 +48,11 @@ async def on_message(msg):
     if 'rat' in msg.content.lower() and not msg.author.bot:
         await misc.send_rat(msg)
                 
-    if msg.content == 'what':
+    if msg.content.lower() == 'what':
         await msg.channel.send('chicken butt')
+
+    if msg.author.name == 'worst president ever':
+        await msg.channel.send('meow')
             
 @client.event
 async def on_raw_reaction_add(payload):
