@@ -35,7 +35,7 @@ async def on_message(msg):
     elif msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
         await makeups.create_makeup(msg, CHECK_MARK_CODE)
 
-    elif msg.channel.name == 'chore-submissions' and not msg.author.bot:
+    elif msg.channel.name == 'bot-test' and not msg.author.bot:
         if msg.attachments:
             await chores.submit_chore(msg)
         

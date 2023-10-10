@@ -2,12 +2,12 @@ import gspread
 import json
 import datetime
 
-CHORE_CHANNEL = 1100529167201734657
-#CHORE_CHANNEL = 1106246078472409201 #test channel
+# CHORE_CHANNEL = 1100529167201734657
+CHORE_CHANNEL = 1106246078472409201 #test channel
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    'failedcorporatecumslut': 'Alex Kautz',
+    'failedcorporatecumslut': 'Noah Dinerman',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
@@ -38,7 +38,8 @@ USERNAMES = {
     'Alex Kautz': 'Alex Kautz',
     'ameninga': 'Amanda Meninga',
     'shirarb': 'Shira Baker',
-    'pluub': 'Hugo Lagergren'
+    'pluub': 'Hugo Lagergren',
+    'raili.8': 'Raili Nelson'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
