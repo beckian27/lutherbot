@@ -154,18 +154,8 @@ async def confirm_teammate(msg, client):
 
 async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
-    msg = await channel.fetch_message(payload.message_id)
-
-    today = msg.created_at#datetime.date.today() # wizardry- finds the date of the most recent sunday
-    sunday_offset = today.isoweekday() % 7
-    
-    if sunday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
-        sunday_offset += 7
-
-    last_sunday = today - datetime.timedelta(days=sunday_offset)
-    last_sunday = datetime.date.strftime(last_sunday, "%m/%d/%Y")
-
-    msg = msg.content.split(',')
+    wholemsg = await channel.fetch_message(payload.message_id)
+    msg = wholemsg.content.split(',')
     for i, word in enumerate(msg):
         msg[i] = word.strip()
     names, chore = msg[:-1], msg[-1]
@@ -173,7 +163,14 @@ async def confirm_chore(payload, client):
     choreday = chore.split(' ')[0].strip(',')
     chore = chore[chore.find(' ') + 1:]
     
+    today = wholemsg.created_at#datetime.date.today() # wizardry- finds the date of the most recent sunday
+    sunday_offset = today.isoweekday() % 7
     
+    if sunday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
+        sunday_offset += 7
+
+    last_sunday = today - datetime.timedelta(days=sunday_offset)
+    last_sunday = datetime.date.strftime(last_sunday, "%m/%d/%Y")
 
     sheet_name = f'Week of {last_sunday}'
     sh = sheets_init()
