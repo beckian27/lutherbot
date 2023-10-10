@@ -2,8 +2,8 @@ import gspread
 import json
 import datetime
 
-# CHORE_CHANNEL = 1100529167201734657
-CHORE_CHANNEL = 1106246078472409201 #test channel
+CHORE_CHANNEL = 1100529167201734657
+# CHORE_CHANNEL = 1106246078472409201 #test channel
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
@@ -181,6 +181,7 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
+    print(sheet_name, names, chore, choreday)
     for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
         col = thisweek.col_values(column)
         day, col = col[0], col[1::] # column format is day name followed by chore title/participant cells
