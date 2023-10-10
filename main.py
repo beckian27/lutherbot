@@ -51,8 +51,11 @@ async def on_message(msg):
     if msg.content.lower() == 'what':
         await msg.channel.send('chicken butt')
 
-    if msg.author.name in ['failedcorporatecumslut', 'Emma Bassett', 'brandon23669']:
+    if msg.author.name in ['Emma Bassett', 'brandon23669']:
         await msg.channel.send('meow')
+
+    if 'meow' in msg.content.lower() and not msg.author.bot:
+        print('todo')
             
 @client.event
 async def on_raw_reaction_add(payload):
