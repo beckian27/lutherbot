@@ -181,16 +181,13 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
-    print(sheet_name, names, chore, choreday)
     for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
         col = thisweek.col_values(column)
         day, col = col[0], col[1::] # column format is day name followed by chore title/participant cells
         if day == choreday: # search for today's column in spreadsheet
-            print(day)
             found = False # days are inconsistent with formatting so we have to parse for the chore
             row = 2 # skip the day name cell
             for cell in col:
-                print(cell)
                 if found:
                     if cell in names:
                         coord = chr(column + 64) + str(row)
@@ -203,7 +200,6 @@ async def confirm_chore(payload, client):
                         names.remove(cell)
                 if cell.replace('\n', '').startswith(chore):
                     found = True
-                    print('hi')
                 row = row + 1
 
 
