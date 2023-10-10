@@ -186,6 +186,7 @@ async def confirm_chore(payload, client):
         col = thisweek.col_values(column)
         day, col = col[0], col[1::] # column format is day name followed by chore title/participant cells
         if day == choreday: # search for today's column in spreadsheet
+            print(day)
             found = False # days are inconsistent with formatting so we have to parse for the chore
             row = 2 # skip the day name cell
             for cell in col:
@@ -201,6 +202,7 @@ async def confirm_chore(payload, client):
                         names.remove(cell)
                 if cell.startswith(chore):
                     found = True
+                    print('hi')
                 row = row + 1
 
 
