@@ -51,7 +51,7 @@ async def on_message(msg):
     if msg.content.lower() == 'what':
         await msg.channel.send('chicken butt')
 
-    if msg.author.name in ['worst president ever', 'Emma Bassett', 'brandon23669']:
+    if msg.author.name in ['failedcorporatecumslut', 'Emma Bassett', 'brandon23669']:
         await msg.channel.send('meow')
             
 @client.event
