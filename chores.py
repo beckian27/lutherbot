@@ -163,7 +163,7 @@ async def confirm_chore(payload, client):
     choreday = chore.split(' ')[0].strip(',')
     chore = chore[chore.find(' ') + 1:]
     
-    today = datetime.date.today() # wizardry- finds the date of the most recent sunday
+    today = msg.created_at#datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
     
     if sunday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
