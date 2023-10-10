@@ -201,7 +201,7 @@ async def confirm_chore(payload, client):
                             'blue': 0.8274509803921568
                         }})
                         names.remove(cell)
-                if cell.startswith(chore):
+                if cell.replace('\n', '').startswith(chore):
                     found = True
                     print('hi')
                 row = row + 1
