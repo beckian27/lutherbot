@@ -181,26 +181,29 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
-    for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
-        col = thisweek.col_values(column)
-        day, col = col[0], col[1::] # column format is day name followed by chore title/participant cells
-        if day == choreday: # search for today's column in spreadsheet
-            found = False # days are inconsistent with formatting so we have to parse for the chore
-            row = 2 # skip the day name cell
-            for cell in col:
-                if found:
-                    if cell in names:
-                        coord = chr(column + 64) + str(row)
-                        thisweek.format(f'{coord}:{coord}', {
-                            'backgroundColor': {
-                            'red': 0.8509803921568627,
-                            'green': 0.9176470588235294,
-                            'blue': 0.8274509803921568
-                        }})
-                        names.remove(cell)
-                if cell.replace('\n', '').startswith(chore):
-                    found = True
-                row = row + 1
+    column = weekdays[choreday]
+
+    # for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
+    col = thisweek.col_values(column)
+        # day, col = col[0], col[1::] # column format is day name followed by chore title/participant cells
+    col = col[1:]
+        # if day == choreday: # search for today's column in spreadsheet
+    found = False # days are inconsistent with formatting so we have to parse for the chore
+    row = 2 # skip the day name cell
+    for cell in col:
+        if found:
+            if cell in names:
+                coord = chr(column + 64) + str(row)
+                thisweek.format(f'{coord}:{coord}', {
+                    'backgroundColor': {
+                    'red': 0.8509803921568627,
+                    'green': 0.9176470588235294,
+                    'blue': 0.8274509803921568
+                }})
+                names.remove(cell)
+        if cell.replace('\n', '').startswith(chore):
+            found = True
+        row = row + 1
 
 
 
