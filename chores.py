@@ -192,6 +192,7 @@ async def confirm_chore(payload, client):
     row = 2 # skip the day name cell
     for cell in col:
         if found:
+            print('hi')
             if cell in names:
                 coord = chr(column + 64) + str(row)
                 thisweek.format(f'{coord}:{coord}', {
