@@ -182,7 +182,6 @@ async def confirm_chore(payload, client):
         thisweek = sh.worksheet(sheet_name)
 
     column = weekdays[choreday] + 1 #sheets 1-indexes
-    print(column)
 
     # for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
     col = thisweek.col_values(column)
@@ -193,7 +192,6 @@ async def confirm_chore(payload, client):
     row = 2 # skip the day name cell
     for cell in col:
         if found:
-            print('hi')
             if cell in names:
                 coord = chr(column + 64) + str(row)
                 thisweek.format(f'{coord}:{coord}', {
