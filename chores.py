@@ -181,7 +181,7 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
-    column = weekdays[choreday]
+    column = weekdays[choreday] + 1 #sheets 1-indexes
     print(column)
 
     # for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
