@@ -35,7 +35,7 @@ USERNAMES = {
     'avameester': 'Ava Meester',
     'Kushal': 'Kushal Sodum',
     'bict0': 'Victo Hungerman',
-    'Alex Kautz': 'Alex Kautz',
+    'alexkautz': 'Alex Kautz',
     'ameninga': 'Amanda Meninga',
     'shirarb': 'Shira Baker',
     'pluub': 'Hugo Lagergren',
@@ -182,12 +182,8 @@ async def confirm_chore(payload, client):
         thisweek = sh.worksheet(sheet_name)
 
     column = weekdays[choreday] + 1 #sheets 1-indexes
-
-    # for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
     col = thisweek.col_values(column)
-        # day, col = col[0], col[1::] # column format is day name followed by chore title/participant cells
     col = col[1:]
-        # if day == choreday: # search for today's column in spreadsheet
     found = False # days are inconsistent with formatting so we have to parse for the chore
     row = 2 # skip the day name cell
     for cell in col:
