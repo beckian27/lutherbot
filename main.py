@@ -32,7 +32,7 @@ async def on_message(msg):
             await shopping.make_shopping_list(msg, client, FS_DM_ID, CHECK_MARK_CODE)
 
     # for the worm to create makeup chores
-    elif msg.channel.name == 'makeup-chores' and msg.author.get_role(WORM):
+    elif msg.channel.name == 'makeup-opportunities' and msg.author.get_role(WORM):
         await makeups.create_makeup(msg, CHECK_MARK_CODE)
 
     elif msg.channel.name == 'chore-submissions' and not msg.author.bot:
