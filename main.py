@@ -47,6 +47,9 @@ async def on_message(msg):
 
     if 'rat' in msg.content.lower() and not msg.author.bot:
         await misc.send_rat(msg)
+
+    if msg.author.name in ['vivcifi', 'failed_corporate_cumslut'] and msg.content.lower() == 'shut up':
+        await misc.shut_up(msg)
                 
     if msg.content.lower() == 'what':
         await msg.channel.send('chicken butt')
