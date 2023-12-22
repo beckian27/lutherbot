@@ -13,7 +13,7 @@ USERNAMES = {
     '_nullwalker': 'DJ Mungo',
     'niickoliiver': 'Nick Oliver',
     'reckless__': 'Jacob Phelps',
-    'Abigail Zoetewey': 'Abby Zoetewey',
+    'abigailzoetewey': 'Abby Zoetewey',
     'Adam': 'Adam Kane',
     'Awmeo Azad': 'Awmeo Azad',
     'lights0123': 'Ben Schattinger',
