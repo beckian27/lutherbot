@@ -19,5 +19,7 @@ async def emo(msg):
 
 async def shut_up(msg):
     async for spam in msg.channel.history(limit = 5, before = msg):
+        spam_array = []
         if spam.author.bot:
-            await msg.channel.delete_messages([spam])
+            spam_array.append(spam)
+        await msg.channel.delete_messages(spam_array)
