@@ -21,7 +21,6 @@ USERNAMES = {
     'benrecht': 'Ben Recht',
     'brandon23669': 'Brandon Palomino-Alonso',
     'Emma0022': 'Emma Bassett',
-    'fredtheredokay': 'Frederik Gøtske',
     'haylie': 'Haylie Toth',
     'dathrax.': 'Jack Handzel',
     'johnfoxbro': 'John Fox',
@@ -38,8 +37,11 @@ USERNAMES = {
     'alexkautz': 'Alex Kautz',
     'ameninga': 'Amanda Meninga',
     'shirarb': 'Shira Baker',
-    'pluub': 'Hugo Lagergren',
-    'raili.8': 'Raili Nelson'
+    'raili.8': 'Raili Nelson',
+    'laylahh': 'Laylah Perez',
+    'tripforte': 'Shane Collins',
+    'johnnyboy1341': 'Tyler Esch',
+    'johnny boy': 'John Brink'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
@@ -54,7 +56,7 @@ weekdays = {"Sunday": 0,
 
 def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
-    sh = gc.open('Fall 2023 Chore Schedule')
+    sh = gc.open('Winter 2024 Chore Schedule')
     return sh
 
 def get_schedule(): # gets the chore schedule from the spreadsheet and stores it in a json
@@ -63,27 +65,25 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     template = sh.worksheet('Schedule by Day')
     schedule = {}
 
-    for column in range(1,8): # The chore schedule is 7 columns with the day names in the first row
+    for column in range(1,10): # The chore schedule is 7 columns with the day names in the first row, then 2 cols of undated chores
         col = template.col_values(column)
         day, col = col[0], col[1::] # split data
         currentchore = ''
-        hours = 0
 
         for cell in col:
             # we can see if a cell is a chore name because it will end in the chore hour value
             if cell and cell[-1].isnumeric():
                 cell = cell.replace('\n', '')
-                currentchore, hours = cell.split(',')
-                hours = hours.strip()
-                currentchore = f'{day} {currentchore}'
+                currentchore, _ = cell.split(',')
+                if column < 8:
+                    currentchore = f'{day} {currentchore}'
 
             # nonblank cells following a chore will be names of participants
-            elif cell and cell != 'MAKEUP OP':
+            elif cell and cell != 'Makeup':
                 if cell not in schedule:
-                    schedule[cell] = [currentchore, hours]
+                    schedule[cell] = [currentchore]
                 else:
                     schedule[cell].append(currentchore)
-                    schedule[cell].append(hours)
 
     # we store the schedule in a json for ease of data access and not making api calls all the time
     file = open('schedule.json', 'w')
@@ -95,21 +95,17 @@ async def submit_chore(msg):
     schedule = json.load(file)
 
     name = USERNAMES[msg.author.name]
-    chore_list = []
-    # go through by twos to skip chore hour info and just get names
-    for index in range(0, len(schedule[name]), 2):
-        chore_list.append(schedule[name][index])
 
     # send a message with a menu to select the correct chore
     choices = f'{name}, which chore are you submitting?'
-    for index in range(len(chore_list)):
-        choices = f'{choices}\n{index + 1}: {chore_list[index]}'
+    for index, chore in enumerate(schedule[name], start=1):
+        choices += f'\n{index}: {chore}'
 
     # react with options to this message
     # when one is selected, triggers prepare_confirm()
     mymsg = await msg.reply(choices)
     for emoji in NUMBER_EMOJIS:
-        if NUMBER_EMOJIS[emoji] <= len(chore_list):
+        if NUMBER_EMOJIS[emoji] <= len(schedule[name]):
             await mymsg.add_reaction(emoji)
 
 # reformats the message to await confirmation of chore by the worm
@@ -126,21 +122,20 @@ async def prepare_confirm(payload, client):
     chore = msg.content.split('\n')[index].strip('123456: ')
     msg = await msg.edit(content=f'{name}, {chore}')
 
-    names = [name]
+    names = []
     file = open('schedule.json', 'r')
     schedule = json.load(file)
     for person in schedule:
         if chore in schedule[person]:
-            if person not in [name, 'Makeup']:
+            if person not in [name, 'Makeup', 'Ian Beck...?']:
                 names.append(person)
     
     # when the worm clicks this check, the chore will be approved
     await msg.add_reaction('✅')
     for person in names:
-        if person != name:
-            mymsg = await msg.reply(f'Also submitting for {person}?')
-            await mymsg.add_reaction('✅')
-            await mymsg.add_reaction('❌')
+        mymsg = await msg.reply(f'Also submitting for {person}?')
+        await mymsg.add_reaction('✅')
+        await mymsg.add_reaction('❌')
 
     await msg.channel.send('slay')
 
@@ -161,12 +156,15 @@ async def confirm_chore(payload, client):
     names, chore = msg[:-1], msg[-1]
 
     choreday = chore.split(' ')[0].strip(',')
-    chore = chore[chore.find(' ') + 1:]
+    if choreday in weekdays:
+        chore = chore[chore.find(' ') + 1:]
+    else:
+        choreday = ''
     
     today = wholemsg.created_at#datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
     
-    if sunday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
+    if choreday and sunday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
         sunday_offset += 7
 
     last_sunday = today - datetime.timedelta(days=sunday_offset)
@@ -181,35 +179,34 @@ async def confirm_chore(payload, client):
         template.duplicate(new_sheet_name=sheet_name)
         thisweek = sh.worksheet(sheet_name)
 
-    column = weekdays[choreday] + 1 #sheets 1-indexes
-    col = thisweek.col_values(column)
-    col = col[1:]
+    column = 8
     found = False # days are inconsistent with formatting so we have to parse for the chore
-    row = 2 # skip the day name cell
-    for cell in col:
+    if choreday:
+        column = weekdays[choreday] + 1 #sheets 1-indexes
+    for _ in range(2):
         if found:
-            if cell in names:
-                coord = chr(column + 64) + str(row)
-                thisweek.format(f'{coord}:{coord}', {
-                    'backgroundColor': {
-                    'red': 0.8509803921568627,
-                    'green': 0.9176470588235294,
-                    'blue': 0.8274509803921568
-                }})
-                names.remove(cell)
-        if cell.replace('\n', '').startswith(chore):
-            found = True
-        row = row + 1
+            break
+        col = thisweek.col_values(column)
+        col = col[1:]
+        row = 2 # skip the day name cell
+        for cell in col:
+            if found:
+                if cell in names:
+                    coord = chr(column + 64) + str(row)
+                    thisweek.format(f'{coord}:{coord}', {
+                        'backgroundColor': {
+                        'red': 0.8509803921568627,
+                        'green': 0.9176470588235294,
+                        'blue': 0.8274509803921568
+                    }})
+                    names.remove(cell)
+                    if not names:
+                        break
+            if cell.replace('\n', '').startswith(chore):
+                found = True
+            row = row + 1
+        column = 9
 
-
-
-
-    
-
-
-    #"Noah Dinerman is very handsome, but even more than that he is super kind and successful" -Josh
-    #Ben 2 Loves intersectional feminism
-    #Olivia has strong opinions on modern feminism
 
     #simplify
 
