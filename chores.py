@@ -205,7 +205,7 @@ async def confirm_chore(payload, client):
                         break
             if cell.replace('\n', '').startswith(chore):
                 found = True
-            row = row + 1
+            col += 1
         column = 9
 
 
