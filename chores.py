@@ -74,7 +74,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
         for cell in col:
             # we can see if a cell is a chore name because it will end in the chore hour value
             if cell and cell[-1].isnumeric():
-                cell = cell.replace('\\n', '')
+                cell = cell.replace('\n', '')
                 currentchore, _ = cell.split(',')
                 if column < 8:
                     currentchore = f'{day} {currentchore}'
@@ -120,7 +120,7 @@ async def prepare_confirm(payload, client):
     # convert number emoji to int using a dictionary to decode
     index = NUMBER_EMOJIS[str(payload.emoji)]
     # we find the chore name by breaking the message by line. Conviently, 1-indexing skips the first line of text
-    chore = msg.content.split('\n')[index].strip('123456: ')
+    chore = msg.content.split('\n')[index].lstrip('123456: ')
     msg = await msg.edit(content=f'{name}, {chore}')
 
     names = []
