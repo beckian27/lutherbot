@@ -152,8 +152,10 @@ async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
     wholemsg = await channel.fetch_message(payload.message_id)
     msg = wholemsg.content.split(',')
+    print(msg)
     for i, word in enumerate(msg):
         msg[i] = word.strip()
+    print(msg)
     names, chore = msg[:-1], msg[-1]
 
     choreday = chore.split(' ')[0].strip(',')
@@ -161,7 +163,7 @@ async def confirm_chore(payload, client):
         chore = chore[chore.find(' ') + 1:]
     else:
         choreday = ''
-    
+    print(choreday)
     today = wholemsg.created_at#datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
     
@@ -185,12 +187,14 @@ async def confirm_chore(payload, client):
     if choreday:
         column = weekdays[choreday] + 1 #sheets 1-indexes
     for _ in range(2):
+        print(column)
         if found:
             break
         col = thisweek.col_values(column)
         col = col[1:]
         row = 2 # skip the day name cell
         for cell in col:
+            print(cell)
             if found:
                 if cell in names:
                     coord = chr(column + 64) + str(row)
@@ -204,6 +208,7 @@ async def confirm_chore(payload, client):
                     if not names:
                         break
             if cell.replace('\n', '').startswith(chore):
+                print('found')
                 found = True
             row += 1
         column = 9
