@@ -46,13 +46,13 @@ USERNAMES = {
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
 
-weekdays = {"Sunday": 0,
-            "Monday": 1,
-            "Tuesday": 2,
-            "Wednesday": 3,
-            "Thursday": 4,
-            "Friday": 5,
-            "Saturday": 6}
+weekdays = {"Sunday": 3,
+            "Monday": 4,
+            "Tuesday": 5,
+            "Wednesday": 6,
+            "Thursday": 0,
+            "Friday": 1,
+            "Saturday": 2}
 
 def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
@@ -161,16 +161,16 @@ async def confirm_chore(payload, client):
         chore = chore[chore.find(' ') + 1:]
     else:
         choreday = ''
-    today = wholemsg.created_at#datetime.date.today() # wizardry- finds the date of the most recent sunday
-    sunday_offset = today.isoweekday() % 7
+    today = wholemsg.created_at # wizardry- finds the date of the most recent wednesday
+    wednesday_offset = (today.isoweekday() + 4) % 7
     
-    if choreday and sunday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
-        sunday_offset += 7
+    if choreday and wednesday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
+        wednesday_offset += 7
 
-    last_sunday = today - datetime.timedelta(days=sunday_offset)
-    last_sunday = datetime.date.strftime(last_sunday, "%m/%d/%Y")
+    last_wednesday = today - datetime.timedelta(days=wednesday_offset)
+    last_wednesday = datetime.date.strftime(last_wednesday, "%m/%d/%Y")
 
-    sheet_name = f'Week of {last_sunday}'
+    sheet_name = f'Week of {last_wednesday}'
     sh = sheets_init()
     try:
         thisweek = sh.worksheet(sheet_name)
