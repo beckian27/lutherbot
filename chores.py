@@ -73,7 +73,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
         for cell in col:
             # we can see if a cell is a chore name because it will end in the chore hour value
             if cell and cell[-1].isnumeric():
-                cell = cell.replace('\n', '')
+                cell = cell.replace('\n', ' ')
                 currentchore, _ = cell.split(',')
                 if column < 8:
                     currentchore = f'{day} {currentchore}'
@@ -202,7 +202,7 @@ async def confirm_chore(payload, client):
                     names.remove(cell)
                     if not names:
                         break
-            if cell.replace('\n', '').startswith(chore):
+            if cell.replace('\n', ' ').startswith(chore):
                 found = True
             row += 1
         column = 9
