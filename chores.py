@@ -198,7 +198,7 @@ async def confirm_chore(payload, client):
                 if cell in names:
                     coord = chr(column + 64) + str(row)
                     print(coord)
-                    thisweek.format(f'G13:G13', {
+                    thisweek.format(f'{coord}:{coord}', {
                         'backgroundColor': {
                         'red': 0.8509803921568627,
                         'green': 0.9176470588235294,
