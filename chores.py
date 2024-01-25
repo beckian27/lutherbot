@@ -2,8 +2,8 @@ import gspread
 import json
 import datetime
 
-# CHORE_CHANNEL = 1100529167201734657
-CHORE_CHANNEL = 1106246078472409201 #test channel
+CHORE_CHANNEL = 1100529167201734657
+# CHORE_CHANNEL = 1106246078472409201 #test channel
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
@@ -67,7 +67,6 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
 
     for column in range(1,10): # The chore schedule is 7 columns with the day names in the first row, then 2 cols of undated chores
         col = template.col_values(column)
-        print(col)
         day, col = col[0], col[1::] # split data
         currentchore = ''
 
@@ -161,7 +160,6 @@ async def confirm_chore(payload, client):
         chore = chore[chore.find(' ') + 1:]
     else:
         choreday = ''
-    print(choreday)
     today = wholemsg.created_at#datetime.date.today() # wizardry- finds the date of the most recent sunday
     sunday_offset = today.isoweekday() % 7
     
@@ -185,19 +183,15 @@ async def confirm_chore(payload, client):
     if choreday:
         column = weekdays[choreday] + 1 #sheets 1-indexes
     for _ in range(2):
-        print(column)
         if found:
             break
         col = thisweek.col_values(column)
         col = col[1:]
         row = 2 # skip the day name cell
         for cell in col:
-            print(cell)
             if found:
-                print(names)
                 if cell in names:
                     coord = chr(column + 64) + str(row)
-                    print(coord)
                     thisweek.format(f'{coord}:{coord}', {
                         'backgroundColor': {
                         'red': 0.8509803921568627,
@@ -208,7 +202,6 @@ async def confirm_chore(payload, client):
                     if not names:
                         break
             if cell.replace('\n', '').startswith(chore):
-                print('found')
                 found = True
             row += 1
         column = 9
