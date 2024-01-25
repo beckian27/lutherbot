@@ -7,7 +7,7 @@ CHORE_CHANNEL = 1100529167201734657
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    'failedcorporatecumslut': 'Kushal Sodum',
+    'failedcorporatecumslut': 'Lily Garcia',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
@@ -46,13 +46,15 @@ USERNAMES = {
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
 
-weekdays = {"Sunday": 3,
-            "Monday": 4,
-            "Tuesday": 5,
-            "Wednesday": 6,
+weekdays = {
             "Thursday": 0,
             "Friday": 1,
-            "Saturday": 2}
+            "Saturday": 2,
+            "Sunday": 3,
+            "Monday": 4,
+            "Tuesday": 5,
+            "Wednesday": 6
+            }
 
 def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
