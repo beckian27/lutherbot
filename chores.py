@@ -152,10 +152,8 @@ async def confirm_chore(payload, client):
     channel = client.get_channel(CHORE_CHANNEL)
     wholemsg = await channel.fetch_message(payload.message_id)
     msg = wholemsg.content.split(',')
-    print(msg)
     for i, word in enumerate(msg):
         msg[i] = word.strip()
-    print(msg)
     names, chore = msg[:-1], msg[-1]
 
     choreday = chore.split(' ')[0].strip(',')
@@ -200,7 +198,7 @@ async def confirm_chore(payload, client):
                 if cell in names:
                     coord = chr(column + 64) + str(row)
                     print(coord)
-                    thisweek.format(f'{coord}:{coord}', {
+                    thisweek.format(f'J13:J13', {
                         'backgroundColor': {
                         'red': 0.8509803921568627,
                         'green': 0.9176470588235294,
