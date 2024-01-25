@@ -7,7 +7,7 @@ CHORE_CHANNEL = 1106246078472409201 #test channel
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    'failedcorporatecumslut': 'Shane Collins',
+    'failedcorporatecumslut': 'Kushal Sodum',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
@@ -86,6 +86,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
                     schedule[cell].append(currentchore)
 
     # we store the schedule in a json for ease of data access and not making api calls all the time
+    print(schedule)
     file = open('schedule.json', 'w')
     json.dump(schedule, file)
 
