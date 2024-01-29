@@ -163,16 +163,16 @@ async def confirm_chore(payload, client):
         chore = chore[chore.find(' ') + 1:]
     else:
         choreday = ''
-    today = wholemsg.created_at # wizardry- finds the date of the most recent wednesday
-    wednesday_offset = (today.isoweekday() + 4) % 7
+    today = wholemsg.created_at # wizardry- finds the date of the most recent thursday
+    thursday_offset = (today.isoweekday() + 3) % 7
     
-    if choreday and wednesday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
-        wednesday_offset += 7
+    if choreday and thursday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
+        thursday_offset += 7
 
-    last_wednesday = today - datetime.timedelta(days=wednesday_offset)
-    last_wednesday = datetime.date.strftime(last_wednesday, "%m/%d/%Y")
+    last_thursday = today - datetime.timedelta(days=thursday_offset)
+    last_thursday = datetime.date.strftime(last_thursday, "%m/%d/%Y")
 
-    sheet_name = f'Week of {last_wednesday}'
+    sheet_name = f'Week of {last_thursday}'
     sh = sheets_init()
     try:
         thisweek = sh.worksheet(sheet_name)
