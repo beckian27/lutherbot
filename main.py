@@ -62,7 +62,7 @@ async def on_message(msg):
         print('todo')
 
     if msg.channel.name == 'bot-test':
-        print(datetime.today())
+        print(msg.created_at)
             
 @client.event
 async def on_raw_reaction_add(payload):
