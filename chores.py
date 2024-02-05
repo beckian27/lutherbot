@@ -32,7 +32,7 @@ USERNAMES = {
     'nohdinerman': 'Noah Dinerman',
     'elizabeth_camilli': 'Liz Camilli',
     'avameester': 'Ava Meester',
-    'Kushal': 'Kushal Sodum',
+    'kushal9653': 'Kushal Sodum',
     'bict0': 'Victo Hungerman',
     'alexkautz': 'Alex Kautz',
     'ameninga': 'Amanda Meninga',
@@ -41,7 +41,8 @@ USERNAMES = {
     'laylahh': 'Laylah Perez',
     'tripforte': 'Shane Collins',
     'johnnyboy1341': 'Tyler Esch',
-    'johnny boy': 'John Brink'
+    'johnny boy': 'John Brink',
+    'mauriciodk2': 'Mauricio Kaddatz'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
@@ -163,13 +164,13 @@ async def confirm_chore(payload, client):
         chore = chore[chore.find(' ') + 1:]
     else:
         choreday = ''
-    today = wholemsg.created_at # wizardry- finds the date of the most recent thursday
-    thursday_offset = (today.isoweekday() + 3) % 7
+    submit_date = wholemsg.created_at # wizardry- finds the date of the most recent thursday
+    thursday_offset = (submit_date.isoweekday() + 3) % 7
     
     if choreday and thursday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
         thursday_offset += 7
 
-    last_thursday = today - datetime.timedelta(days=thursday_offset)
+    last_thursday = submit_date - datetime.timedelta(days=thursday_offset)
     last_thursday = datetime.date.strftime(last_thursday, "%m/%d/%Y")
 
     sheet_name = f'Week of {last_thursday}'
