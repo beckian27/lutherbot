@@ -5,6 +5,7 @@ import shopping
 import misc
 import makeups
 import chores
+import datetime
 
 CHECK_MARK_CODE = '\U00002705'
 FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
@@ -59,6 +60,9 @@ async def on_message(msg):
 
     if 'meow' in msg.content.lower() and not msg.author.bot:
         print('todo')
+
+    if msg.channel.name == 'bot-test':
+        print(datetime.today())
             
 @client.event
 async def on_raw_reaction_add(payload):
