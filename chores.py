@@ -164,7 +164,8 @@ async def confirm_chore(payload, client):
         chore = chore[chore.find(' ') + 1:]
     else:
         choreday = ''
-    submit_date = wholemsg.created_at # wizardry- finds the date of the most recent thursday
+    submit_date = wholemsg.created_at # finds the date of the most recent thursday
+    submit_date -= datetime.timedelta(hours=5) # convert from UTC to EST
     thursday_offset = (submit_date.isoweekday() + 3) % 7
     
     if choreday and thursday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
