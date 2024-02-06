@@ -18,7 +18,7 @@ async def make_shopping_list(msg, client, id, check):
             await mymsg.add_reaction(check)
         
     copypaste = '' # also sends a single copy-pasteable message for this who prefer not to use this
-    for request in sorted(requests):
+    for request in sorted(set(requests)):
         if len(copypaste) > 1950: # if message approches discord char limit
             await fs_dm.send(copypaste)
             copypaste = ''
