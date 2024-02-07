@@ -13,6 +13,7 @@ MAKEUP_ID = 1115356156307718144
 SERVER_ID = 1100528927803461634
 WORM = 1103462042490384434
 PREZ = 1103461097803092079
+FOOD_STEWARD = 1103461475152039956
 
 load_dotenv() # store the discord token in a text file called ".env"
 token = os.getenv('token') # im sure this is super secure but idrc
@@ -29,7 +30,7 @@ async def on_message(msg):
     # food requests are made by prefacing the term with !
     # the food steward can generate a shopping list by typing !shoppinglist
     if msg.channel.name == 'food-requests':
-        if msg.content.startswith('!shopping'):
+        if msg.content.startswith('!shopping') and (msg.author.get_role(FOOD_STEWARD) or msg.author.get_role(PREZ)):
             await shopping.make_shopping_list(msg, client, FS_DM_ID, CHECK_MARK_CODE)
 
     # for the worm to create makeup chores
