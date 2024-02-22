@@ -42,7 +42,9 @@ USERNAMES = {
     'tripforte': 'Shane Collins',
     'johnnyboy1341': 'Tyler Esch',
     'johnny boy': 'John Brink',
-    'mauriciodk2': 'Mauricio Kaddatz'
+    'mauriciodk2': 'Mauricio Kaddatz',
+    'haylie916': 'Haylie Toth',
+    'lesbiancomrademiku': 'Rocke Ramsey'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
