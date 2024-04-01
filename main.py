@@ -32,6 +32,9 @@ async def on_message(msg):
     if msg.channel.name == 'food-requests':
         if msg.content.startswith('!shopping') and (msg.author.get_role(FOOD_STEWARD) or msg.author.get_role(PREZ)):
             await shopping.make_shopping_list(msg, client, FS_DM_ID, CHECK_MARK_CODE)
+        elif msg.content.startswith('!'):
+            txt = msg.content.strip('!')
+            await msg.channel.send(f'We have {txt} at home')
 
     # for the worm to create makeup chores
     elif msg.channel.name == 'makeup-opportunities' and msg.author.get_role(WORM):

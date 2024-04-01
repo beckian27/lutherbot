@@ -143,7 +143,7 @@ async def prepare_confirm(payload, client):
         await mymsg.add_reaction('✅')
         await mymsg.add_reaction('❌')
 
-    await msg.channel.send('slay')
+    await msg.channel.send('Duplicate chore submission detected! The WoRMs will contact you shortly to set up a referral hearing. Guff love.')
 
 async def confirm_teammate(msg, client):
     channel = client.get_channel(msg.reference.channel_id)
