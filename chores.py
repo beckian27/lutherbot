@@ -135,7 +135,7 @@ async def prepare_confirm(payload, client):
         await mymsg.add_reaction('✅')
         await mymsg.add_reaction('❌')
 
-    await msg.channel.send('slay')
+    await msg.channel.send('Slay')
 
 async def confirm_teammate(msg, client):
     channel = client.get_channel(msg.reference.channel_id)
