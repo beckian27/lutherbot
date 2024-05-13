@@ -7,44 +7,36 @@ CHORE_CHANNEL = 1100529167201734657
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    'failedcorporatecumslut': 'Lily Garcia',
+    'failedcorporatecumslut': 'Ian Beck',
     'cassie.eissac': 'Cassie Prokopowicz',
     'Devon_Risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
-    'niickoliiver': 'Nick Oliver',
     'reckless__': 'Jacob Phelps',
     'abigailzoetewey': 'Abby Zoetewey',
     'Adam': 'Adam Kane',
-    'Awmeo Azad': 'Awmeo Azad',
     'lights0123': 'Ben Schattinger',
     'benjyn.': 'Ben Nacht',
-    'benrecht': 'Ben Recht',
-    'brandon23669': 'Brandon Palomino-Alonso',
     'Emma0022': 'Emma Bassett',
-    'haylie': 'Haylie Toth',
     'dathrax.': 'Jack Handzel',
     'johnfoxbro': 'John Fox',
     'lilianagarcia_73938': 'Lily Garcia',
     'crab3296': 'Ashton Ross',
-    'mayaschne': 'Maya Schneider',
     'madisonisdead': 'Madison Dennis',
-    'ndinolfo': 'Nate Dinolfo',
     'nohdinerman': 'Noah Dinerman',
-    'elizabeth_camilli': 'Liz Camilli',
     'avameester': 'Ava Meester',
     'kushal9653': 'Kushal Sodum',
-    'bict0': 'Victo Hungerman',
-    'alexkautz': 'Alex Kautz',
-    'ameninga': 'Amanda Meninga',
     'shirarb': 'Shira Baker',
     'raili.8': 'Raili Nelson',
     'laylahh8837': 'Laylah Perez',
     'tripforte': 'Shane Collins',
-    'johnnyboy1341': 'Tyler Esch',
-    'johnny boy': 'John Brink',
-    'mauriciodk2': 'Mauricio Kaddatz',
-    'haylie916': 'Haylie Toth',
-    'lesbiancomrademiku': 'Rocke Ramsey'
+    'vanniboy239': 'John Brink',
+    'lesbiancomrademiku': 'Rocke Ramsey',
+    'abug22': 'Aaron Bugner',
+    'fxjupiter': 'Charles Swan',
+    'fartaqueefo': 'Farrah Aquino',
+    'ladojac': 'Jack Lado',
+    'yopinky': 'Olivia Korensky',
+    'beelzeschlub418': 'Phil Tyler'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
@@ -61,7 +53,7 @@ weekdays = {
 
 def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
-    sh = gc.open('Winter 2024 Chore Schedule')
+    sh = gc.open('Summer 2024 Chore Schedule')
     return sh
 
 def get_schedule(): # gets the chore schedule from the spreadsheet and stores it in a json
