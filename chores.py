@@ -36,7 +36,8 @@ USERNAMES = {
     'fartaqueefo': 'Farrah Aquino',
     'ladojac': 'Jack Lado',
     'yopinky': 'Olivia Korensky',
-    'beelzeschlub418': 'Phil Tyler'
+    'beelzeschlub418': 'Phil Tyler',
+    'badbxtchslayer': 'Ella Lado'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
