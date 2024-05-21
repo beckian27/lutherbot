@@ -7,9 +7,9 @@ CHORE_CHANNEL = 1100529167201734657
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    'Failedcorporatecumslut': 'Ian Beck',
+    'failedcorporatecumslut': 'Ian Beck',
     'cassie.eissac': 'Cassie Prokopowicz',
-    'Devon_Risacher': 'Devon Risacher',
+    'devon_risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
     'reckless__': 'Jacob Phelps',
     'abigailzoetewey': 'Abby Zoetewey',
