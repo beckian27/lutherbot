@@ -13,7 +13,7 @@ USERNAMES = {
     '_nullwalker': 'DJ Mungo',
     'reckless__': 'Jacob Phelps',
     'abigailzoetewey': 'Abby Zoetewey',
-    'Adam': 'Adam Kane',
+    'adam055593': 'Adam Kane',
     'lights0123': 'Ben Schattinger',
     'benjyn.': 'Ben Nacht',
     'Emma0022': 'Emma Bassett',
@@ -129,6 +129,7 @@ async def prepare_confirm(payload, client):
                 names.append(person)
     
     # when the worm clicks this check, the chore will be approved
+    await msg.clear_reactions()
     await msg.add_reaction('✅')
     for person in names:
         mymsg = await msg.reply(f'Also submitting for {person}?')
