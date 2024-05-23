@@ -16,7 +16,7 @@ USERNAMES = {
     'adam055593': 'Adam Kane',
     'lights0123': 'Ben Schattinger',
     'benjyn.': 'Ben Nacht',
-    'Emma0022': 'Emma Bassett',
+    'emma0022_': 'Emma Bassett',
     'dathrax.': 'Jack Handzel',
     'johnfoxbro': 'John Fox',
     'lilianagarcia_73938': 'Lily Garcia',

@@ -30,7 +30,7 @@ async def on_message(msg):
     # food requests are made by prefacing the term with !
     # the food steward can generate a shopping list by typing !shoppinglist
     if msg.channel.name == 'food-requests':
-        if msg.content.startswith('!shopping') and (msg.author.get_role(FOOD_STEWARD) or msg.author.get_role(PREZ)):
+        if msg.content.startswith('!shopping') and (msg.author.get_role(FOOD_STEWARD) or msg.author.name == 'failedcorporatecumslut'):
             await shopping.make_shopping_list(msg, client, FS_DM_ID, CHECK_MARK_CODE)
 
     # for the worm to create makeup chores
@@ -56,7 +56,7 @@ async def on_message(msg):
     if msg.content.lower() == 'what':
         await msg.channel.send('chicken butt')
 
-    if msg.author.name in ['Emma0022', 'brandon23669']:
+    if msg.author.name in ['emma0022_', 'brandon23669']:
         await msg.channel.send('meow')
 
     if 'meow' in msg.content.lower() and not msg.author.bot:
