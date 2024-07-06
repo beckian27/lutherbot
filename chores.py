@@ -32,7 +32,7 @@ USERNAMES = {
     'vanniboy239': 'John Brink',
     'lesbiancomrademiku': 'Rocke Ramsey',
     'abug22': 'Aaron Bugner',
-    'fxjupiter': 'Charles Swan',
+    'fxjupiter': 'Charlie Swan',
     'fartaqueefo': 'Farrah Aquino',
     'ladojac': 'Jack Lado',
     'yopinky': 'Olivia Korensky',
