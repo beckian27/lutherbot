@@ -8,15 +8,10 @@ CHORE_CHANNEL = 1100529167201734657
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
     'failedcorporatecumslut': 'Ian Beck',
-    'cassie.eissac': 'Cassie Prokopowicz',
-    'devon_risacher': 'Devon Risacher',
     '_nullwalker': 'DJ Mungo',
     'reckless__': 'Jacob Phelps',
-    'abigailzoetewey': 'Abby Zoetewey',
     'adam055593': 'Adam Kane',
     'lights0123': 'Ben Schattinger',
-    'benjyn.': 'Ben Nacht',
-    'emma0022_': 'Emma Bassett',
     'dathrax.': 'Jack Handzel',
     'johnfoxbro': 'John Fox',
     'lilianagarcia_73938': 'Lily Garcia',
@@ -33,12 +28,19 @@ USERNAMES = {
     'lesbiancomrademiku': 'Rocke Ramsey',
     'abug22': 'Aaron Bugner',
     'fxjupiter': 'Charlie Swan',
-    'fartaqueefo': 'Farrah Aquino',
-    'ladojac': 'Jack Lado',
     'yopinky': 'Olivia Korensky',
     'beelzeschlub418': 'Phil Tyler',
     'badbxtchslayer': 'Ella Lado',
-    'deadly_nightshade_': 'Ben Schneider'
+    'juicyjchen': 'Jordan Chen',
+    'redheadedmiddlechild': 'Kevin Alfaro-Ortiz',
+    'gr0ss': 'Alex Alanis',
+    'elianaaaa113': 'Eliana Levy',
+    'ethanjohnson24': 'Ethan Johnson',
+    'isopodbowls': 'Eve Sotham',
+    'woba6y4748': 'Layla Salaheldin',
+    'niickoliiver': 'Nick Oliver',
+    'skalvert': 'Sasha Kalvert',
+    'will019319': 'William McCall'
     }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
@@ -55,7 +57,7 @@ weekdays = {
 
 def sheets_init(): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
-    sh = gc.open('Summer 2024 Chore Schedule')
+    sh = gc.open('Fall 2024 Chore Schedule')
     return sh
 
 def get_schedule(): # gets the chore schedule from the spreadsheet and stores it in a json
