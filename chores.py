@@ -46,13 +46,13 @@ USERNAMES = {
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
 
 weekdays = {
-            "Thursday": 0,
-            "Friday": 1,
-            "Saturday": 2,
-            "Sunday": 3,
-            "Monday": 4,
-            "Tuesday": 5,
-            "Wednesday": 6
+            "Thursday": 3,
+            "Friday": 4,
+            "Saturday": 5,
+            "Sunday": 6,
+            "Monday": 0,
+            "Tuesday": 1,
+            "Wednesday": 2
             }
 
 def sheets_init(): # connect to and return spreadsheet object
