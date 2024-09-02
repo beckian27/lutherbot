@@ -1,5 +1,6 @@
 import os
 import discord
+from discord import app_commands
 from dotenv import load_dotenv
 import shopping
 import misc
@@ -7,8 +8,8 @@ import makeups
 import chores
 import datetime
 
-CHECK_MARK_CODE = '\U00002705'
-FS_DM_ID = 1110021975109288006 #hardcode the DM where the shopping list is generated
+GREEN_CHECK = '\U00002705'
+SHOPPING_ID = 1110021975109288006
 MAKEUP_ID = 1115356156307718144
 SERVER_ID = 1100528927803461634
 WORM = 1103462042490384434
@@ -18,11 +19,22 @@ FOOD_STEWARD = 1103461475152039956
 load_dotenv() # store the discord token in a text file called ".env"
 token = os.getenv('token') # im sure this is super secure but idrc
 client = discord.Client(intents=discord.Intents.all()) # lets the bot do whatever it wants
+tree = app_commands.CommandTree(client) # this is for commands
+
     
 @client.event
 async def on_ready():
+    await tree.sync(guild=discord.Object(id=SERVER_ID))
     print(f'{client.user} has connected to Discord!')
     chores.sheets_init()
+
+@tree.command(
+    name="Update",
+    description="Updates the stored list of chores",
+    guild=discord.Object(id=SERVER_ID)
+)
+async def first_command(interaction):
+    await interaction.response.send_message("Hello!")
 
     
 @client.event
@@ -31,11 +43,11 @@ async def on_message(msg):
     # the food steward can generate a shopping list by typing !shoppinglist
     if msg.channel.name == 'food-requests':
         if msg.content.startswith('!shopping') and (msg.author.get_role(FOOD_STEWARD) or msg.author.name == 'failedcorporatecumslut'):
-            await shopping.make_shopping_list(msg, client, FS_DM_ID, CHECK_MARK_CODE)
+            await shopping.make_shopping_list(msg, client, SHOPPING_ID, GREEN_CHECK)
 
     # for the worm to create makeup chores
     elif msg.channel.name == 'makeup-opportunities' and msg.author.get_role(WORM):
-        await makeups.create_makeup(msg, CHECK_MARK_CODE)
+        await makeups.create_makeup(msg, GREEN_CHECK)
 
     elif msg.channel.name == 'chore-submissions' and not msg.author.bot:
         if msg.attachments:
@@ -68,8 +80,8 @@ async def on_message(msg):
 @client.event
 async def on_raw_reaction_add(payload):
     # this will delete an item from the shopping list when reacted to
-    if payload.channel_id == FS_DM_ID:
-        await shopping.delete_item(payload, client, FS_DM_ID)
+    if payload.channel_id == SHOPPING_ID:
+        await shopping.delete_item(payload, client, SHOPPING_ID)
                 
     # allows claiming of makeup chore opportunities or deletion by worm
     elif payload.channel_id == MAKEUP_ID:
@@ -83,13 +95,13 @@ async def on_raw_reaction_add(payload):
             channel = client.get_channel(chores.CHORE_CHANNEL)
             msg = await channel.fetch_message(payload.message_id)
             if msg.content.startswith('Also submitting for '):
-                if str(payload.emoji) == CHECK_MARK_CODE:
+                if str(payload.emoji) == GREEN_CHECK:
                     await chores.confirm_teammate(msg, client)
                 elif str(payload.emoji) == '❌':
                     channel = client.get_channel(chores.CHORE_CHANNEL)
                     await channel.delete_messages([msg])
 
-            elif str(payload.emoji) == CHECK_MARK_CODE and user.get_role(WORM):
+            elif str(payload.emoji) == GREEN_CHECK and user.get_role(WORM):
                 await chores.confirm_chore(payload, client)
             elif str(payload.emoji) in chores.NUMBER_EMOJIS:
                 await chores.prepare_confirm(payload, client)
