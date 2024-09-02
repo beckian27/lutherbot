@@ -66,7 +66,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     template = sh.worksheet('Schedule by Day')
     schedule = {}
 
-    for column in range(1,10): # The chore schedule is 7 columns with the day names in the first row, then 2 cols of undated chores
+    for column in range(1,9): # The chore schedule is 7 columns with the day names in the first row, then 2 cols of undated chores
         col = template.col_values(column)
         day, col = col[0], col[1::] # split data
         currentchore = ''
