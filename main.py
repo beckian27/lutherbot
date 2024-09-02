@@ -29,7 +29,7 @@ async def on_ready():
     chores.sheets_init()
 
 @tree.command(
-    name="Update",
+    name="update",
     description="Updates the stored list of chores",
     guild=discord.Object(id=SERVER_ID)
 )
