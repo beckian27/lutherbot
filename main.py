@@ -34,8 +34,8 @@ async def on_ready():
     guild=discord.Object(id=SERVER_ID)
 )
 async def first_command(interaction):
-    chores.get_schedule()
     await interaction.response.send_message("Schedule updated!")
+    chores.get_schedule()
 
     
 @client.event
