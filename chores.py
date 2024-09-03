@@ -95,7 +95,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
 
     # this section updates the list the bot uses to track chore completion week-by-week
     gc = gspread.service_account(filename='creds.json')
-    sh = gc.open('Fall 2024 Chore Schedule')
+    sh = gc.open('F24 Makeup & Fine Tracker')
     masterlist = sh.worksheet('All Chore List')
     names =  masterlist.col_values(1)
     chores = masterlist.col_values(2)
