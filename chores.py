@@ -212,7 +212,7 @@ async def confirm_chore(payload, client):
         row = 2 # skip the day name cell
         for cell in col:
             if found:
-                if cell in names:
+                if cell.strip() in names:
                     coord = chr(column + 64) + str(row)
                     thisweek.format(f'{coord}:{coord}', {
                         'backgroundColor': {
@@ -220,7 +220,7 @@ async def confirm_chore(payload, client):
                         'green': 0.9176470588235294,
                         'blue': 0.8274509803921568
                     }})
-                    names.remove(cell)
+                    names.remove(cell.strip())
                     if not names:
                         break
             if cell.replace('\n', ' ').startswith(chore):
