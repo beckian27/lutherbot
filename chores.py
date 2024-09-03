@@ -84,6 +84,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
 
             # nonblank cells following a chore will be names of participants
             elif cell and cell != 'Makeup':
+                cell = cell.strip()
                 if cell not in schedule:
                     schedule[cell] = [currentchore]
                 else:
