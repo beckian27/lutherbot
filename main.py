@@ -35,7 +35,7 @@ async def on_ready():
 )
 async def first_command(interaction):
     chores.get_schedule()
-    # await interaction.response.send_message("Hello!")
+    await interaction.response.send_message("Schedule updated!")
 
     
 @client.event
@@ -96,13 +96,13 @@ async def on_raw_reaction_add(payload):
             channel = client.get_channel(chores.CHORE_CHANNEL)
             msg = await channel.fetch_message(payload.message_id)
             if msg.content.startswith('Also submitting for '):
-                if str(payload.emoji) == GREEN_CHECK:
+                if str(payload.emoji) == '✅':
                     await chores.confirm_teammate(msg, client)
                 elif str(payload.emoji) == '❌':
                     channel = client.get_channel(chores.CHORE_CHANNEL)
                     await channel.delete_messages([msg])
 
-            elif str(payload.emoji) == GREEN_CHECK and user.get_role(WORM):
+            elif str(payload.emoji) == '✅' and user.get_role(WORM):
                 await chores.confirm_chore(payload, client)
             elif str(payload.emoji) in chores.NUMBER_EMOJIS:
                 await chores.prepare_confirm(payload, client)
