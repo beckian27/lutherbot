@@ -99,6 +99,9 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     chores = masterlist.col_values(2)
     completed = masterlist.col_values(3)
 
+    for person in schedule:
+        print(person)
+
 
 
 
