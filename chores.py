@@ -29,7 +29,7 @@ USERNAMES = {
     'abug22': 'Aaron Bugner',
     'fxjupiter': 'Charlie Swan',
     'yopinky': 'Olivia Korensky',
-    'beelzeschlub418': 'Phil Tyler',
+    'beelzeschlub418': 'Philip Tyler',
     'badbxtchslayer': 'Ella Lado',
     'juicyjchen': 'Jordan Chen',
     'redheadedmiddlechild': 'Kevin Alfaro-Ortiz',
@@ -42,8 +42,9 @@ USERNAMES = {
     'skalvert': 'Sasha Kalvert',
     'will019319': 'William McCall',
     '.deathbyhamster': 'Jagger Pacheco',
-    'ioana.jpeg': 'Ioana Dumitrascu'
-    }
+    'ioana.jpeg': 'Ioana Dumitrascu',
+    'saucy_max': 'Max West'
+}
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
 
@@ -91,6 +92,16 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     # we store the schedule in a json for ease of data access and not making api calls all the time
     file = open('schedule.json', 'w')
     json.dump(schedule, file)
+
+    # this section updates the list the bot uses to track chore completion week-by-week
+    masterlist = sh.worksheet('All Chore List')
+    names =  masterlist.col_values(1)
+    chores = masterlist.col_values(2)
+    completed = masterlist.col_values(3)
+
+
+
+
 
 # triggered when the worm checks off a chore
 async def submit_chore(msg):

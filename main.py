@@ -57,7 +57,7 @@ async def on_message(msg):
         if msg.content.startswith('!update') and msg.author.get_role(WORM):
             chores.get_schedule()
     
-    if 'emo' in msg.content.lower(): 
+    if 'emo' in msg.content.lower():
         await misc.emo(msg)
 
     if 'rat' in msg.content.lower() and not msg.author.bot:
@@ -77,6 +77,9 @@ async def on_message(msg):
 
     if msg.channel.name == 'bot-test':
         print(msg.created_at)
+
+    if msg.author.name in ['woba6y4748', 'adam055593']:
+        await msg.channel.send('cowabunga')
             
 @client.event
 async def on_raw_reaction_add(payload):
