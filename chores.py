@@ -40,7 +40,9 @@ USERNAMES = {
     'woba6y4748': 'Layla Salaheldin',
     'niickoliiver': 'Nick Oliver',
     'skalvert': 'Sasha Kalvert',
-    'will019319': 'William McCall'
+    'will019319': 'William McCall',
+    '.deathbyhamster': 'Jagger Pacheco',
+    'ioana.jpeg': 'Ioana Dumitrascu'
     }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
