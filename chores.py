@@ -43,7 +43,8 @@ USERNAMES = {
     'will019319': 'William McCall',
     '.deathbyhamster': 'Jagger Pacheco',
     'ioana.jpeg': 'Ioana Dumitrascu',
-    'saucy_max': 'Max West'
+    'saucy_max': 'Max West',
+    'clarina1113': 'Clarina Hsu'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
@@ -97,13 +98,12 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     # this section updates the list the bot uses to track chore completion week-by-week
     gc = gspread.service_account(filename='creds.json')
     sh = gc.open('F24 Makeup & Fine Tracker')
-    masterlist = sh.worksheet('All Chore List')
-    names =  masterlist.col_values(1)
-    chores = masterlist.col_values(2)
-    completed = masterlist.col_values(3)
-
-    for person in schedule:
-        print('j')
+    chorelist = sh.worksheet('All Chore List')
+    names =  chorelist.col_values(1)
+    chores = chorelist.col_values(2)
+    completed = chorelist.col_values(3)
+    print(schedule)
+    #for person in schedule:
 
 
 
