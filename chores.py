@@ -106,7 +106,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     for person in schedule:
         for chore in schedule[person]:
             if not f'{person}, {chore}' in chores:
-                chorelist.update(f'A{row}:B{row}', [f'{person}, {chore}', 2, 1])
+                chorelist.update(f'A{row}:B{row}', [[f'{person}, {chore}', 2, 1]])
                 row += 1
 
 
