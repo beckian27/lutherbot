@@ -99,13 +99,15 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     gc = gspread.service_account(filename='creds.json')
     sh = gc.open('F24 Makeup & Fine Tracker')
     chorelist = sh.worksheet('All Chore List')
-    names =  chorelist.col_values(1)
-    chores = chorelist.col_values(2)
-    completed = chorelist.col_values(3)
-    print(schedule)
-    #for person in schedule:
-
-
+    chores = chorelist.col_values(1)
+    chores = chores[1:]
+    row = len(chores) + 2
+    
+    for person in schedule:
+        for chore in schedule[person]:
+            if not f'{person}, {chore}' in chores:
+                chorelist.update(f'A{row}:B{row}', [f'{person}, {chore}', 2, 1])
+                row += 1
 
 
 # triggered when the worm checks off a chore
