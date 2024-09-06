@@ -1,9 +1,12 @@
 import gspread
 import json
 import datetime
+import time
 
 CHORE_CHANNEL = 1100529167201734657
 # CHORE_CHANNEL = 1106246078472409201 #test channel
+
+TRACKER = 'F24 Makeup & Fine Tracker'
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
@@ -98,7 +101,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
 
     # this section updates the list the bot uses to track chore completion week-by-week
     #TODO remove old chores
-    sh = sheets_init('F24 Makeup & Fine Tracker')
+    sh = sheets_init(TRACKER)
     chorelist = sh.worksheet('All Chore List')
     chores = chorelist.col_values(1)
     chores = chores[1:]
@@ -190,22 +193,24 @@ async def confirm_chore(payload, client):
         msg[i] = word.strip()
     names, chore = msg[:-1], msg[-1]
 
+    update_tracker(names, chore)
+
     choreday = chore.split(' ')[0].strip(',')
     if choreday in weekdays:
         chore = chore[chore.find(' ') + 1:]
     else:
         choreday = ''
-    submit_date = wholemsg.created_at # finds the date of the most recent thursday
+    submit_date = wholemsg.created_at # finds the date of the most recent monday
     submit_date -= datetime.timedelta(hours=5) # convert from UTC to EST
-    thursday_offset = (submit_date.isoweekday() + 6) % 7
+    monday_offset = submit_date.weekday()
     
-    if choreday and thursday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
-        thursday_offset += 7
+    if choreday and monday_offset < weekdays[choreday]: # someone is submitting a chore from the prev week
+        monday_offset += 7
 
-    last_thursday = submit_date - datetime.timedelta(days=thursday_offset)
-    last_thursday = datetime.date.strftime(last_thursday, "%m/%d/%Y")
+    last_monday = submit_date - datetime.timedelta(days=monday_offset)
+    last_monday = datetime.date.strftime(last_monday, "%m/%d/%Y")
 
-    sheet_name = f'Week of {last_thursday}'
+    sheet_name = f'Week of {last_monday}'
     sh = sheets_init('Fall 2024 Chore Schedule')
     try:
         thisweek = sh.worksheet(sheet_name)
@@ -242,6 +247,19 @@ async def confirm_chore(payload, client):
             row += 1
         column = 9
 
+def update_tracker(names, chore):
+    tracker = sheets_init(TRACKER)
+    chorelist = tracker.worksheet('All Chore List')
+    chorenames = chorelist.col_values(1)
+    for name in names:
+        i = chorenames.index(f'{name}, {chore}') + 1
+        while True:
+            try:
+                chorelist.update_cell(i, 3, 0)
+                break
+            except:
+                time.sleep(60)
+                continue
 
     #simplify
 
