@@ -59,14 +59,14 @@ weekdays = {
             "Wednesday": 2
             }
 
-def sheets_init(): # connect to and return spreadsheet object
+def sheets_init(sheet_name): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
-    sh = gc.open('Fall 2024 Chore Schedule')
+    sh = gc.open(sheet_name)
     return sh
 
 def get_schedule(): # gets the chore schedule from the spreadsheet and stores it in a json
     # manually called whenever the chore schedule is updated
-    sh = sheets_init()
+    sh = sheets_init('Fall 2024 Chore Schedule')
     template = sh.worksheet('Schedule by Day')
     schedule = {}
 
@@ -96,18 +96,29 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
     json.dump(schedule, file)
 
     # this section updates the list the bot uses to track chore completion week-by-week
-    gc = gspread.service_account(filename='creds.json')
-    sh = gc.open('F24 Makeup & Fine Tracker')
+    #TODO remove old chores
+    sh = sheets_init('F24 Makeup & Fine Tracker')
     chorelist = sh.worksheet('All Chore List')
     chores = chorelist.col_values(1)
     chores = chores[1:]
     row = len(chores) + 2
     
+    rows_to_add = []
     for person in schedule:
         for chore in schedule[person]:
             if not f'{person}, {chore}' in chores:
-                chorelist.update(f'A{row}:C{row}', [[f'{person}, {chore}', 2, 1]])
-                row += 1
+                hours = 1
+                # THIS SECTION MAY NEED TO BE MANUALLY ADJUSTED WITH NEW SCHEDULES
+                if 'Cook' in chore:
+                    hours = 4
+                elif 'After Din' or 'Eve Kitchen' in chore:
+                    hours = 2
+                elif 'Porches' in chore:
+                    hours = .5
+
+                rows_to_add.append([f'{person}, {chore}', hours, 1])
+
+    chorelist.update(f'A{row}:C{row + len(rows_to_add)}', rows_to_add)
 
 
 # triggered when the worm checks off a chore
@@ -194,7 +205,7 @@ async def confirm_chore(payload, client):
     last_thursday = datetime.date.strftime(last_thursday, "%m/%d/%Y")
 
     sheet_name = f'Week of {last_thursday}'
-    sh = sheets_init()
+    sh = sheets_init('Fall 2024 Chore Schedule')
     try:
         thisweek = sh.worksheet(sheet_name)
     except gspread.WorksheetNotFound:
