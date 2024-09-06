@@ -26,7 +26,6 @@ tree = app_commands.CommandTree(client) # this is for commands
 async def on_ready():
     await tree.sync(guild=discord.Object(id=SERVER_ID))
     print(f'{client.user} has connected to Discord!')
-    chores.sheets_init()
 
 @tree.command(
     name="update",
