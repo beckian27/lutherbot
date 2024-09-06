@@ -112,8 +112,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
                 # THIS SECTION MAY NEED TO BE MANUALLY ADJUSTED WITH NEW SCHEDULES
                 if 'Cook' in chore:
                     hours = 4
-                elif 'After Din' or 'Eve Kitchen' in chore:
-                    print(chore)
+                elif 'After Din' in chore or 'Eve Kitchen' in chore:
                     hours = 2
                 elif 'Porches' in chore:
                     hours = .5
