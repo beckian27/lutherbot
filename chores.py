@@ -48,7 +48,8 @@ USERNAMES = {
     'ioana.jpeg': 'Ioana Dumitrascu',
     'saucy_max': 'Max West',
     'clarina1113': 'Clarina Hsu',
-    'babingobango': 'Ethan Marshall'
+    'babingobango': 'Ethan Marshall',
+    'christjesus7971': 'Christian Loza'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
