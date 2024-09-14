@@ -49,7 +49,8 @@ USERNAMES = {
     'saucy_max': 'Max West',
     'clarina1113': 'Clarina Hsu',
     'babingobango': 'Ethan Marshall',
-    'christjesus7971': 'Christian Loza'
+    'christjesus7971': 'Christian Loza',
+    'lyrical0865': 'Lyric Okoro'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
