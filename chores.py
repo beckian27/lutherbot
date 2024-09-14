@@ -114,7 +114,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
             if not f'{person}, {chore}' in chores:
                 hours = 1
                 # THIS SECTION MAY NEED TO BE MANUALLY ADJUSTED WITH NEW SCHEDULES
-                if 'Cook' in chore:
+                if 'Cook' in chore and '\'' not in chore:
                     hours = 4
                 elif 'After Din' in chore or 'Eve Kitchen' in chore:
                     hours = 2

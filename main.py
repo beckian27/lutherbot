@@ -32,8 +32,17 @@ async def on_ready():
     description="Updates the stored list of chores",
     guild=discord.Object(id=SERVER_ID)
 )
-async def first_command(interaction):
+async def update_schedule(interaction):
     await interaction.response.send_message("Schedule updated!")
+    chores.get_schedule()
+
+@tree.command(
+    name="missedchores",
+    description="Generates the list of chores missed this week",
+    guild=discord.Object(id=SERVER_ID)
+)
+async def missed_chore_list(interaction):
+    msg = await interaction.response.send_message("Working...")
     chores.get_schedule()
 
     
