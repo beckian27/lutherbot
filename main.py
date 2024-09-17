@@ -41,9 +41,9 @@ async def update_schedule(interaction):
     description="Generates the list of chores missed this week",
     guild=discord.Object(id=SERVER_ID)
 )
-async def missed_chore_list(interaction):
+async def missed_chores_command(interaction):
     msg = await interaction.response.send_message("Working...")
-    chores.get_schedule()
+    chores.generate_missed_chores()
 
     
 @client.event

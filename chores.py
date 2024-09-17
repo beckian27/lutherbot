@@ -255,7 +255,7 @@ def update_tracker(names, chore):
     chorenames = chorelist.col_values(1)
     for name in names:
         i = chorenames.index(f'{name}, {chore}') + 1
-        while True:
+        while True: # TODO thread this to avoid blocking
             try:
                 chorelist.update_cell(i, 3, 0)
                 break
@@ -263,5 +263,17 @@ def update_tracker(names, chore):
                 time.sleep(60)
                 continue
 
-    #simplify
 
+def generate_missed_chores():
+    tracker = sheets_init(TRACKER)
+    chorelist = tracker.worksheet('All Chore List')
+    chores = chorelist.col_values(1)
+    hours = chorelist.col_values(2)
+    weeks_missed = chorelist.col_values(3)
+
+    
+
+    for index, hours in enumerate(weeks_missed):
+        return
+
+    return

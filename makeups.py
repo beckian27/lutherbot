@@ -13,7 +13,7 @@ async def claim_makeup(payload, client, serve, makeup, worm):
     if not user.bot:
         channel = client.get_channel(makeup)
         msg = await channel.fetch_message(payload.message_id)
-        if 'claimed' in msg:
+        if 'claimed' in msg.content:
             return
         
         if msg.author.bot:
