@@ -273,7 +273,7 @@ def generate_missed_chores():
 
     missed_chore_list = {}
 
-    for index, hours in enumerate(weeks_missed):
+    for index, hours in enumerate(weeks_missed, start=1):
         if int(hours) > 0:
             [name, chore] = chores[index].split(',')
             chore = chore.strip()
