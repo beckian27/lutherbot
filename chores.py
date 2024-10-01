@@ -271,9 +271,17 @@ def generate_missed_chores():
     hours = chorelist.col_values(2)
     weeks_missed = chorelist.col_values(3)
 
-    
+    missed_chore_list = {}
 
     for index, hours in enumerate(weeks_missed):
-        return
+        if hours > 0:
+            [name, chore] = chores[index].split(',')
+            chore = chore.strip()
 
-    return
+            if hours > 1:
+                chore = f'{chore}, {hours} weeks in a row'
+            if name in missed_chore_list:
+                missed_chore_list[name].append(chores[index])
+            else:
+                missed_chore_list[name] = [chores[index]]
+    print(missed_chore_list)
