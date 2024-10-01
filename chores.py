@@ -276,7 +276,6 @@ def generate_missed_chores():
     missed_chore_list = {}
 
     for row in values:
-        print(row)
         weeks = int(row[2])
         if weeks > 0:
             [name, chore] = row[0].split(',')
