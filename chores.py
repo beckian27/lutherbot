@@ -268,20 +268,20 @@ def generate_missed_chores():
     tracker = sheets_init(TRACKER)
     chorelist = tracker.worksheet('All Chore List')
     chores = chorelist.col_values(1)
-    hours = chorelist.col_values(2)
+    chore_hours = chorelist.col_values(2)
     weeks_missed = chorelist.col_values(3)
 
-    values = list(zip(chores, hours, weeks_missed))[1:]
+    values = list(zip(chores, chore_hours, weeks_missed))[1:]
 
     missed_chore_list = {}
 
     for row in values:
         print(row)
-        if int(hours) > 0:
+        weeks = int(row[2])
+        if weeks > 0:
             [name, chore] = row[0].split(',')
             chore = chore.strip()
-            hour = row[1]
-            weeks = int(row[2])
+            hours = row[1]
 
             if weeks > 1:
                 chore = f'{chore}, {hours} weeks in a row'
