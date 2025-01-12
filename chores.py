@@ -72,7 +72,7 @@ def sheets_init(sheet_name): # connect to and return spreadsheet object
 
 def get_schedule(): # gets the chore schedule from the spreadsheet and stores it in a json
     # manually called whenever the chore schedule is updated
-    sh = sheets_init('Fall 2024 Chore Schedule')
+    sh = sheets_init('Winter 2025 Chore Schedule')
     template = sh.worksheet('Schedule by Day')
     schedule = {}
 
@@ -213,7 +213,7 @@ async def confirm_chore(payload, client):
     last_monday = datetime.date.strftime(last_monday, "%m/%d/%Y")
 
     sheet_name = f'Week of {last_monday}'
-    sh = sheets_init('Fall 2024 Chore Schedule')
+    sh = sheets_init('Winter 2025 Chore Schedule')
     try:
         thisweek = sh.worksheet(sheet_name)
     except gspread.WorksheetNotFound:
