@@ -7,6 +7,9 @@ CHORE_CHANNEL = 1100529167201734657
 # CHORE_CHANNEL = 1106246078472409201 #test channel
 
 TRACKER = 'F24 Makeup & Fine Tracker'
+CHORE_LIST = 'All Chore List'
+SCHEDULE = 'Winter 2025 Chore Schedule'
+
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
@@ -65,15 +68,16 @@ weekdays = {
             "Wednesday": 2
             }
 
-def sheets_init(sheet_name): # connect to and return spreadsheet object
+def sheets_init(doc_name, sheet_name): # connect to and return spreadsheet object
     gc = gspread.service_account(filename='creds.json')
-    sh = gc.open(sheet_name)
+    sh = gc.open(doc_name)
+    if sheet_name:
+        sh = sh.worksheet(sheet_name)
     return sh
 
 def get_schedule(): # gets the chore schedule from the spreadsheet and stores it in a json
     # manually called whenever the chore schedule is updated
-    sh = sheets_init('Winter 2025 Chore Schedule')
-    template = sh.worksheet('Schedule by Day')
+    template = sheets_init(SCHEDULE, 'Schedule by Day')
     schedule = {}
 
     for column in range(1,9): # The chore schedule is 7 columns with the day names in the first row, then 2 cols of undated chores
@@ -103,8 +107,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
 
     # this section updates the list the bot uses to track chore completion week-by-week
     #TODO remove old chores
-    sh = sheets_init(TRACKER)
-    chorelist = sh.worksheet('All Chore List')
+    chorelist = sheets_init(TRACKER, CHORE_LIST)
     chores = chorelist.col_values(1)
     chores = chores[1:]
     row = len(chores) + 2
@@ -213,7 +216,7 @@ async def confirm_chore(payload, client):
     last_monday = datetime.date.strftime(last_monday, "%m/%d/%Y")
 
     sheet_name = f'Week of {last_monday}'
-    sh = sheets_init('Winter 2025 Chore Schedule')
+    sh = sheets_init(SCHEDULE, '')
     try:
         thisweek = sh.worksheet(sheet_name)
     except gspread.WorksheetNotFound:
@@ -250,8 +253,7 @@ async def confirm_chore(payload, client):
         column = 9
 
 def update_tracker(names, chore):
-    tracker = sheets_init(TRACKER)
-    chorelist = tracker.worksheet('All Chore List')
+    chorelist = sheets_init(TRACKER, CHORE_LIST)
     chorenames = chorelist.col_values(1)
     for name in names:
         i = chorenames.index(f'{name}, {chore}') + 1
@@ -265,15 +267,26 @@ def update_tracker(names, chore):
 
 
 def generate_missed_chores():
-    tracker = sheets_init(TRACKER)
-    chorelist = tracker.worksheet('All Chore List')
+    chorelist = sheets_init(TRACKER, CHORE_LIST)
     chores = chorelist.col_values(1)
-    hours = chorelist.col_values(2)
+    chore_hours = chorelist.col_values(2)
     weeks_missed = chorelist.col_values(3)
 
-    
+    values = list(zip(chores, chore_hours, weeks_missed))[1:]
 
-    for index, hours in enumerate(weeks_missed):
-        return
+    missed_chore_list = {}
 
-    return
+    for row in values:
+        weeks = int(row[2])
+        if weeks > 0:
+            [name, chore] = row[0].split(',')
+            chore = chore.strip()
+            hours = row[1]
+
+            if weeks > 1:
+                chore = f'{chore}, {hours} weeks in a row'
+            if name in missed_chore_list:
+                missed_chore_list[name].append(chore)
+            else:
+                missed_chore_list[name] = [chore]
+    print(missed_chore_list)
