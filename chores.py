@@ -6,7 +6,7 @@ import time
 CHORE_CHANNEL = 1100529167201734657
 # CHORE_CHANNEL = 1106246078472409201 #test channel
 
-TRACKER = 'F24 Makeup & Fine Tracker'
+TRACKER = 'W25 Makeup & Fine Tracker'
 CHORE_LIST = 'All Chore List'
 SCHEDULE = 'Winter 2025 Chore Schedule'
 
