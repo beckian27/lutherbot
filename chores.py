@@ -39,7 +39,7 @@ USERNAMES = {
     'badbxtchslayer': 'Ella Lado',
     'juicyjchen': 'Jordan Chen',
     'redheadedmiddlechild': 'Kevin Alfaro-Ortiz',
-    'gr0ss': 'Alex Alanis',
+    'gr0ss': 'Alexandra Alanis',
     'elianaaaa113': 'Eliana Levy',
     'ethanjohnson24': 'Ethan Johnson',
     'isopodbowls': 'Eve Sotham',
@@ -53,7 +53,9 @@ USERNAMES = {
     'clarina1113': 'Clarina Hsu',
     'babingobango': 'Ethan Marshall',
     'christjesus7971': 'Christian Loza',
-    'lyrical0865': 'Lyric Okoro'
+    'artpoplesbian': 'Fina Sabatini',
+    'jo.sh.eats': 'Josh Sheats',
+    'olivialacommare': 'Olivia LaCommare'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
