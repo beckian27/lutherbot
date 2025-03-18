@@ -20,7 +20,7 @@ USERNAMES = {
     'lights0123': 'Ben Schattinger',
     'dathrax.': 'Jack Handzel',
     'johnfoxbro': 'John Fox',
-    'lilianagarcia_73938': 'Lily Garcia',
+    'lilianagarcia_73938': 'Liliana Garcia',
     'crab3296': 'Ashton Ross',
     'madisonisdead': 'Madison Dennis',
     'nohdinerman': 'Noah Dinerman',
@@ -55,7 +55,8 @@ USERNAMES = {
     'christjesus7971': 'Christian Loza',
     'artpoplesbian': 'Fina Sabatini',
     'jo.sh.eats': 'Josh Sheats',
-    'olivialacommare': 'Olivia LaCommare'
+    'olivialacommare': 'Olivia LaCommare',
+    'bendy_enby': 'Jasper VanHorn'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
