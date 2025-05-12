@@ -8,7 +8,7 @@ CHORE_CHANNEL = 1100529167201734657
 
 TRACKER = 'W25 Makeup & Fine Tracker'
 CHORE_LIST = 'All Chore List'
-SCHEDULE = 'Winter 2025 Chore Schedule'
+SCHEDULE = 'Spring/Summer 2025 Chore Schedule'
 
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
@@ -42,7 +42,8 @@ USERNAMES = {
     'ioana.jpeg': 'Ioana Dumitrascu',
     'saucy_max': 'Max West',
     'christjesus7971': 'Christian Loza',
-    'artpoplesbian':
+    'artpoplesbian': 'Serafina Sabatini',
+    'bendy_enby': 'Jasper VanHorne'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
