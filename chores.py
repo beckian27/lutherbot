@@ -15,20 +15,12 @@ SCHEDULE = 'Winter 2025 Chore Schedule'
 USERNAMES = {
     'failedcorporatecumslut': 'Ian Beck',
     '_nullwalker': 'DJ Mungo',
-    'reckless__': 'Jacob Phelps',
-    'adam055593': 'Adam Kane',
     'lights0123': 'Ben Schattinger',
     'dathrax.': 'Jack Handzel',
-    'johnfoxbro': 'John Fox',
-    'lilianagarcia_73938': 'Liliana Garcia',
-    'crab3296': 'Ashton Ross',
     'madisonisdead': 'Madison Dennis',
-    'nohdinerman': 'Noah Dinerman',
     'avameester': 'Ava Meester',
     'kushal9653': 'Kushal Sodum',
     'shirarb': 'Shira Baker',
-    'raili.8': 'Raili Nelson',
-    'laylahh8837': 'Laylah Perez',
     'tripforte': 'Shane Collins',
     'vanniboy239': 'John Brink',
     'lesbiancomrademiku': 'Rocke Ramsey',
@@ -44,19 +36,13 @@ USERNAMES = {
     'ethanjohnson24': 'Ethan Johnson',
     'isopodbowls': 'Eve Sotham',
     'woba6y4748': 'Layla Salaheldin',
-    'niickoliiver': 'Nick Oliver',
     'skalvert': 'Sasha Kalvert',
     'will019319': 'William McCall',
     '.deathbyhamster': 'Jagger Pacheco',
     'ioana.jpeg': 'Ioana Dumitrascu',
     'saucy_max': 'Max West',
-    'clarina1113': 'Clarina Hsu',
-    'babingobango': 'Ethan Marshall',
     'christjesus7971': 'Christian Loza',
-    'artpoplesbian': 'Fina Sabatini',
-    'jo.sh.eats': 'Josh Sheats',
-    'olivialacommare': 'Olivia LaCommare',
-    'bendy_enby': 'Jasper VanHorn'
+    'artpoplesbian':
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
