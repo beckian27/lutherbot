@@ -28,11 +28,7 @@ USERNAMES = {
     'fxjupiter': 'Charlie Swan',
     'yopinky': 'Olivia Korensky',
     'beelzeschlub418': 'Philip Tyler',
-    'badbxtchslayer': 'Ella Lado',
-    'juicyjchen': 'Jordan Chen',
-    'redheadedmiddlechild': 'Kevin Alfaro-Ortiz',
     'gr0ss': 'Alexandra Alanis',
-    'elianaaaa113': 'Eliana Levy',
     'ethanjohnson24': 'Ethan Johnson',
     'isopodbowls': 'Eve Sotham',
     'woba6y4748': 'Layla Salaheldin',
@@ -43,7 +39,8 @@ USERNAMES = {
     'saucy_max': 'Max West',
     'christjesus7971': 'Christian Loza',
     'artpoplesbian': 'Serafina Sabatini',
-    'bendy_enby': 'Jasper VanHorne'
+    'bendy_enby': 'Jasper VanHorne',
+    'damiandarkbrighte': 'Amina'
 }
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
