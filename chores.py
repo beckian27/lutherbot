@@ -38,7 +38,7 @@ USERNAMES = {
     'ioana.jpeg': 'Ioana Dumitrascu',
     'saucy_max': 'Max West',
     'christjesus7971': 'Christian Loza',
-    'artpoplesbian': 'Serafina Sabatini',
+    'bleachblondeglinda': 'Serafina Sabatini',
     'bendy_enby': 'Jasper VanHorne',
     'damiandarkbrighte': 'Amina'
 }
