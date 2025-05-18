@@ -58,27 +58,27 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
 
     # this section updates the list the bot uses to track chore completion week-by-week
     #TODO remove old chores
-    chorelist = sheets_init(config.TRACKER, config.CHORE_LIST)
-    chores = chorelist.col_values(1)
-    chores = chores[1:]
-    row = len(chores) + 2
+    # chorelist = sheets_init(config.TRACKER, config.CHORE_LIST)
+    # chores = chorelist.col_values(1)
+    # chores = chores[1:]
+    # row = len(chores) + 2
     
-    rows_to_add = []
-    for person in schedule:
-        for chore in schedule[person]:
-            if not f'{person}, {chore}' in chores:
-                hours = 1
-                # THIS SECTION MAY NEED TO BE MANUALLY ADJUSTED WITH NEW SCHEDULES
-                if 'Cook' in chore and '\'' not in chore:
-                    hours = 4
-                elif 'After Din' in chore or 'Eve Kitchen' in chore:
-                    hours = 2
-                elif 'Porches' in chore:
-                    hours = .5
+    # rows_to_add = []
+    # for person in schedule:
+    #     for chore in schedule[person]:
+    #         if not f'{person}, {chore}' in chores:
+    #             hours = 1
+    #             # THIS SECTION MAY NEED TO BE MANUALLY ADJUSTED WITH NEW SCHEDULES
+    #             if 'Cook' in chore and '\'' not in chore:
+    #                 hours = 4
+    #             elif 'After Din' in chore or 'Eve Kitchen' in chore:
+    #                 hours = 2
+    #             elif 'Porches' in chore:
+    #                 hours = .5
 
-                rows_to_add.append([f'{person}, {chore}', hours, 1])
+    #             rows_to_add.append([f'{person}, {chore}', hours, 1])
 
-    chorelist.update(f'A{row}:C{row + len(rows_to_add)}', rows_to_add)
+    # chorelist.update(f'A{row}:C{row + len(rows_to_add)}', rows_to_add)
 
 
 # triggered when the worm checks off a chore
@@ -149,7 +149,7 @@ async def confirm_chore(payload, client):
         msg[i] = word.strip()
     names, chore = msg[:-1], msg[-1]
 
-    update_tracker(names, chore)
+    # update_tracker(names, chore)
 
     choreday = chore.split(' ')[0].strip(',')
     if choreday in weekdays:
