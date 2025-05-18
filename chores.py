@@ -203,7 +203,7 @@ async def confirm_chore(payload, client):
             row += 1
         column = 9
 
-def update_tracker(names, chore):
+def update_tracker(names, chore): # unused/ unimplemented feature
     chorelist = sheets_init(config.TRACKER, config.CHORE_LIST)
     chorenames = chorelist.col_values(1)
     for name in names:
@@ -217,7 +217,7 @@ def update_tracker(names, chore):
                 continue
 
 
-def generate_missed_chores():
+def generate_missed_chores(): # unused/ unimplemented feature
     chorelist = sheets_init(config.TRACKER, config.CHORE_LIST)
     chores = chorelist.col_values(1)
     chore_hours = chorelist.col_values(2)
