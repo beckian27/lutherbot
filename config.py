@@ -7,7 +7,7 @@ SCHEDULE = 'Spring/Summer 2025 Chore Schedule'
 USERNAMES = {
     'failedcorporatecumslut': 'Ian Beck',
     '_nullwalker': 'DJ Mungo',
-    'lights0123': 'Ben Schattinger',
+    'lights0123': 'Ben Scattinger',
     'dathrax.': 'Jack Handzel',
     'madisonisdead': 'Madison Dennis',
     'avameester': 'Ava Meester',
