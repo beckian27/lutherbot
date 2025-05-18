@@ -32,5 +32,6 @@ USERNAMES = {
     'christjesus7971': 'Christian Loza',
     'bleachblondeglinda': 'Serafina Sabatini',
     'bendy_enby': 'Jasper VanHorne',
-    'damiandarkbrighte': 'Amina'
+    'damiandarkbrighte': 'Amina' ,
+    'batgrrrl' : 'Marie'
 }
