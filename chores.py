@@ -2,46 +2,10 @@ import gspread
 import json
 import datetime
 import time
+import config
 
 CHORE_CHANNEL = 1100529167201734657
 # CHORE_CHANNEL = 1106246078472409201 #test channel
-
-TRACKER = 'W25 Makeup & Fine Tracker'
-CHORE_LIST = 'All Chore List'
-SCHEDULE = 'Spring/Summer 2025 Chore Schedule'
-
-
-# key for matching discord names to names in the spreadsheet, needs to be manually updated
-USERNAMES = {
-    'failedcorporatecumslut': 'Ian Beck',
-    '_nullwalker': 'DJ Mungo',
-    'lights0123': 'Ben Schattinger',
-    'dathrax.': 'Jack Handzel',
-    'madisonisdead': 'Madison Dennis',
-    'avameester': 'Ava Meester',
-    'kushal9653': 'Kushal Sodum',
-    'shirarb': 'Shira Baker',
-    'tripforte': 'Shane Collins',
-    'vanniboy239': 'John Brink',
-    'lesbiancomrademiku': 'Rocke Ramsey',
-    'abug22': 'Aaron Bugner',
-    'fxjupiter': 'Charlie Swan',
-    'yopinky': 'Olivia Korensky',
-    'beelzeschlub418': 'Philip Tyler',
-    'gr0ss': 'Alexandra Alanis',
-    'ethanjohnson24': 'Ethan Johnson',
-    'isopodbowls': 'Eve Sotham',
-    'woba6y4748': 'Layla Salaheldin',
-    'skalvert': 'Sasha Kalvert',
-    'will019319': 'William McCall',
-    '.deathbyhamster': 'Jagger Pacheco',
-    'ioana.jpeg': 'Ioana Dumitrascu',
-    'saucy_max': 'Max West',
-    'christjesus7971': 'Christian Loza',
-    'bleachblondeglinda': 'Serafina Sabatini',
-    'bendy_enby': 'Jasper VanHorne',
-    'damiandarkbrighte': 'Amina'
-}
 
 NUMBER_EMOJIS = {'1️⃣': 1, '2️⃣': 2, '3️⃣': 3, '4️⃣': 4, '5️⃣': 5, '6️⃣': 6}
 
@@ -64,7 +28,7 @@ def sheets_init(doc_name, sheet_name): # connect to and return spreadsheet objec
 
 def get_schedule(): # gets the chore schedule from the spreadsheet and stores it in a json
     # manually called whenever the chore schedule is updated
-    template = sheets_init(SCHEDULE, 'Schedule by Day')
+    template = sheets_init(config.SCHEDULE, 'Schedule by Day')
     schedule = {}
 
     for column in range(1,9): # The chore schedule is 7 columns with the day names in the first row, then 2 cols of undated chores
@@ -94,7 +58,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
 
     # this section updates the list the bot uses to track chore completion week-by-week
     #TODO remove old chores
-    chorelist = sheets_init(TRACKER, CHORE_LIST)
+    chorelist = sheets_init(config.TRACKER, config.CHORE_LIST)
     chores = chorelist.col_values(1)
     chores = chores[1:]
     row = len(chores) + 2
@@ -122,7 +86,7 @@ async def submit_chore(msg):
     file = open('schedule.json', 'r')
     schedule = json.load(file)
 
-    name = USERNAMES[msg.author.name]
+    name = config.USERNAMES[msg.author.name]
 
     # send a message with a menu to select the correct chore
     choices = f'{name}, which chore are you submitting?'
@@ -203,7 +167,7 @@ async def confirm_chore(payload, client):
     last_monday = datetime.date.strftime(last_monday, "%m/%d/%Y")
 
     sheet_name = f'Week of {last_monday}'
-    sh = sheets_init(SCHEDULE, '')
+    sh = sheets_init(config.SCHEDULE, '')
     try:
         thisweek = sh.worksheet(sheet_name)
     except gspread.WorksheetNotFound:
@@ -240,7 +204,7 @@ async def confirm_chore(payload, client):
         column = 9
 
 def update_tracker(names, chore):
-    chorelist = sheets_init(TRACKER, CHORE_LIST)
+    chorelist = sheets_init(config.TRACKER, config.CHORE_LIST)
     chorenames = chorelist.col_values(1)
     for name in names:
         i = chorenames.index(f'{name}, {chore}') + 1
@@ -254,7 +218,7 @@ def update_tracker(names, chore):
 
 
 def generate_missed_chores():
-    chorelist = sheets_init(TRACKER, CHORE_LIST)
+    chorelist = sheets_init(config.TRACKER, config.CHORE_LIST)
     chores = chorelist.col_values(1)
     chore_hours = chorelist.col_values(2)
     weeks_missed = chorelist.col_values(3)
