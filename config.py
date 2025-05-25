@@ -33,5 +33,6 @@ USERNAMES = {
     'bleachblondeglinda': 'Serafina Sabatini',
     'bendy_enby': 'Jasper VanHorne',
     'damiandarkbrighte': 'Amina' ,
-    'batgrrrl1291' : 'Marie Kazmierski'
+    'batgrrrl1291' : 'Marie Kazmierski' ,
+    'vivcifi' : 'Vivian Branham'
 }
