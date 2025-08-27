@@ -1,6 +1,6 @@
-TRACKER = 'W25 Makeup & Fine Tracker'
+TRACKER = 'F25 Makeup & Fine Tracker'
 CHORE_LIST = 'All Chore List'
-SCHEDULE = 'Spring/Summer 2025 Chore Schedule'
+SCHEDULE = 'Fall 2025 Chore Schedule'
 
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
@@ -40,6 +40,11 @@ USERNAMES = {
     'bendy_enby': 'Jasper VanHorne',
     'vivcifi' : 'Vivian Branham',
     'nyasper_0677': 'Zee',
+    'wasomijelili': 'Flint',
+    'madi_.13': 'Madison Leads', 
+    'mk3makayla': 'Makayla Apulello',
+    
+
     
     
 }
