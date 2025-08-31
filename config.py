@@ -40,9 +40,11 @@ USERNAMES = {
     'bendy_enby': 'Jasper VanHorne',
     'vivcifi' : 'Vivian Branham',
     'nyasper_0677': 'Zee',
-    'wasomijelili': 'Flint',
+    'wasomijelili': 'Eli Flint',
     'madi_.13': 'Madison Leads', 
     'mk3makayla': 'Makayla Apulello',
+    'leopeeo': 'Leo', 
+    
     
 
     
