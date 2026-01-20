@@ -12,7 +12,7 @@ USERNAMES = {
     'avameester': 'Ava Meester',
     'c.harles2408': 'Charles Coles',
     'delia9860': 'Delia Harris',
-    'jeephater3000': 'Dominic Hammond',
+    'jeephater3000': 'Eliza Hammond',
     'edingens_72068': 'Eli Dingens',
     'grantr_l': 'Grant Regan-Loomis',
     'jannes7297': 'Jannes Tiemes', 
