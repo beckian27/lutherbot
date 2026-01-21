@@ -5,7 +5,6 @@ SCHEDULE = 'Fall 2025 Chore Schedule'
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
 USERNAMES = {
-    '_nullwalker': 'Dj Mungo',
     'lights0123': 'Ben Schattinger',
     'dathrax.': 'Jack Handzel',
     'madisonisdead': 'Madison Dennis',
@@ -42,11 +41,13 @@ USERNAMES = {
     'nyasper_0677': 'Zee',
     'wasomijelili': 'Eli Robinson',
     'madi_.13': 'Madison Leads', 
-    'mk3makayla': 'Makayla Apulello',
-    'leopeeo': 'Leo P', 
+    'mk3makayla': 'Makayla Apulello', 
     'divockorigi0647': 'Caleb Shoup',
     'jasonl': 'Jason',
-    'gobbybear': 'Jamie'
+    'gobbybear': 'Jamie',
+    'molly037353': 'Molly',
+    'rofenil': 'Danny
+    
     
     
     
