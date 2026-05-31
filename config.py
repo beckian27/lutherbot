@@ -1,6 +1,6 @@
 TRACKER = 'W26 Makeup & Fine Tracker'
 CHORE_LIST = 'All Chore List'
-SCHEDULE = 'Winter 2026 Chore Schedule'
+SCHEDULE = 'Summer 2026 Chore Schedule'
 
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
@@ -46,7 +46,8 @@ USERNAMES = {
     'jasonl': 'Jason',
     'gobbybear': 'Jamie',
     'molly037353': 'Molly',
-    'rofenil': 'Danny'
+    'rofenil': 'Danny',
+    'randomgaming_': 'Jacob Dvorin'
     
     
     
