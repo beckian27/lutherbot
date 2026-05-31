@@ -33,7 +33,6 @@ USERNAMES = {
     'woba6y4748': 'Layla Salaheldin',
     'skalvert': 'Sasha Kalvert',
     'will019319': 'William McCall',
-    '.deathbyhamster': 'Jagger Pacheco',
     'ioana.jpeg': 'Ioana Dumitrascu',
     'christjesus7971': 'Christian Loza',
     'bendy_enby': 'Jasper VanHorne',
