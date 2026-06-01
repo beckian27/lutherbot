@@ -43,6 +43,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
                 currentchore, _ = cell.split(',')
                 if column < 8:
                     currentchore = f'{day} {currentchore}'
+                print(f'{currentchore}')
 
             # nonblank cells following a chore will be names of participants
             elif cell and cell != 'Makeup':
@@ -51,6 +52,7 @@ def get_schedule(): # gets the chore schedule from the spreadsheet and stores it
                     schedule[cell] = [currentchore]
                 else:
                     schedule[cell].append(currentchore)
+                print(f'{cell}')
 
     # we store the schedule in a json for ease of data access and not making api calls all the time
     file = open('schedule.json', 'w')
