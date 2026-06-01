@@ -26,6 +26,7 @@ USERNAMES = {
     'lesbiancomrademiku': 'Rocke Ramsey',
     'abug22': 'Aaron Bugner',
     'fxjupiter': 'Charlie Swan',
+    '.deathbyhamster': 'Jagger Pacheco',
     'yopinky': 'Olivia Korensky',
     'gr0ss': 'Alexandra Alanis',
     'ethanjohnson24': 'Ethan Johnson',
