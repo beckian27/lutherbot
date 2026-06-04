@@ -47,7 +47,8 @@ USERNAMES = {
     'gobbybear': 'Jamie',
     'molly037353': 'Molly',
     'rofenil': 'Danny',
-    'randomgaming_': 'Jacob Dvorin'
+    'randomgaming_': 'Jacob Dvorin',
+    'smalltestacount': 'Alexa',
     
     
     
