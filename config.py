@@ -1,6 +1,6 @@
 TRACKER = 'W26 Makeup & Fine Tracker'
 CHORE_LIST = 'All Chore List'
-SCHEDULE = 'Summer 2026 Chore Schedule'
+SCHEDULE = 'Luther Fall 2026 Chore Schedule'
 
 
 # key for matching discord names to names in the spreadsheet, needs to be manually updated
